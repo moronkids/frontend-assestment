@@ -1,6 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
-const guest = ({ component: Component, ...rest }) => {
+const Guest = ({ component: Component, ...rest }) => {
+    const token = localStorage.getItem('token');
+  if (token !== null) {
+    return <Redirect to="/" />
+  }
   return (
     <Route
       {...rest}
@@ -16,4 +20,4 @@ const guest = ({ component: Component, ...rest }) => {
 
 };
 
-export default guest;
+export default Guest;
