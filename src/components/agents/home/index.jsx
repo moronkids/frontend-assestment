@@ -1,6 +1,6 @@
 import React from 'react'
-import noRequest from 'components/agents/home/dashboard/noRequest'
-import detailRequest from 'components/agents/home/dashboard/detailRequest'
+import NoRequest from 'components/agents/home/part/noRequest'
+import DetailRequest from 'components/agents/home/part/detailRequest'
 
 function Home() {
     return (
