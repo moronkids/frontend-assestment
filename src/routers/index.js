@@ -11,7 +11,7 @@ const Routes = () => {
     //for dev mode
     const [token, setToken] = useState('');
     useEffect(() => {
-        localStorage.setItem('token', 'agent');
+        localStorage.setItem('token', 'customer');
         setToken(localStorage.getItem('token'))
     }, [token]);
 

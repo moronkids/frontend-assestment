@@ -8,6 +8,7 @@ import IconProfile from "assets/img/icons/Profile.svg"
 import IconProfileWhite from "assets/img/icons/Profile_w.svg"
 import IconLogout from "assets/img/icons/Logout.svg"
 import { Hooks } from "providers";
+
 function Sidebar(props) {
     const { activeTab, setActiveTab } = useContext(Hooks)
     return (
