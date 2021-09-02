@@ -47,5 +47,12 @@
 
 //import custom styling
 @import "../../components/layouts/layouts.scss";
+
+// semua scss tampilan menu nav home
 @import "../scss/home/home";
 @import "../scss/home/home-detail";
+
+// semua scss tampilan menu transaksi
+@import "../scss/transactions/choose-transaction";
+@import "../scss/transactions/form-transaction";
+@import "../scss/transactions/table-agent-transaction";
