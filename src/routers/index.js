@@ -6,12 +6,13 @@ import LoggedRoutes from "routers/logged";
 //drop pages here
 import Agent from 'pages/agents';
 import Customer from 'pages/customers';
+import LoginPage from 'pages/login';
 
 const Routes = () => {
     //for dev mode
     const [token, setToken] = useState('');
     useEffect(() => {
-        localStorage.setItem('token', 'customer');
+        // localStorage.setItem('token', 'customer');
         setToken(localStorage.getItem('token'))
     }, [token]);
 
@@ -20,12 +21,12 @@ const Routes = () => {
             <Switch>
                 {/* logged routes */}
                 {/* <LoggedRoutes exact path="/" component={Homepage} /> */}
+                {/* <LoggedRoutes exact path="/login" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/> */}
                 <LoggedRoutes exact path="/" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
-                <LoggedRoutes exact path="/home" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 {/* logged routes */}
 
                 {/* guest routes */}
-                {/* <GuestRoutes exact path="/login" component={LoginPage} /> */}
+                <GuestRoutes exact path="/login" component={LoginPage} />
 
                 {/* guest routes */}
             </Switch>

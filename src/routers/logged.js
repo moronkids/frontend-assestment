@@ -5,7 +5,7 @@ const Logged = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');
   console.log(token, "sd")
   if (token === null) {
-    return <Redirect to="/" />
+    return <Redirect to="/login" />
   }
   return (
     <Route

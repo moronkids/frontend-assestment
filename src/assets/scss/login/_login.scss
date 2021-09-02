@@ -1,0 +1,69 @@
+.loginPage {
+    background: #f6f7fb;
+    width: 100vw;
+    height: 100vh;
+    & .bubble-top {
+        background-image: url("../../img/loginPage/bubble-top.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto;
+        width: 21.125em;
+        height: 23.7em;
+        right: 0;
+    }
+    & .bubble-btm {
+        background-image: url("../../img/loginPage/bubble-btm.svg");
+        @extend .bubble-top;
+        width: 23.125em;
+        height: 28.7em;
+        right: unset;
+        bottom: 0;
+    }
+    & .forms {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & .wrapLogin {
+            z-index: 100;
+            & .iconLogin {
+                background-image: url("../../img/loginPage/iconLogin.svg");
+                width: 470px;
+                height: 180px;
+                background-size: 470px;
+            }
+            & .formLogin {
+                padding-top: 37px;
+                & .inputLogin {
+                    padding-bottom: 26px;
+                    & .label {
+                        font-family: Roboto;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 19px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        padding-bottom: 8px;
+                        color: #7a7a7a;
+                    }
+                    & input {
+                        /* Auto Layout */
+                        max-width: 441px;
+                        width: 100%;
+                        height: 60px;
+                        // display: flex;
+                        // flex-direction: column;
+                        // justify-content: space-between;
+                        // align-items: flex-start;
+                        padding: 4px 16px;
+
+                        background: #ffffff;
+                        border: 1px solid #3183ff;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
