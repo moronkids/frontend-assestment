@@ -44,10 +44,7 @@ function Forms() {
                         <div className="label">Password</div>
                         <input type="password" placeholder="Password" onChange={(e) => setPass(e.target.value)}/>
                     </div>
-                    {/* <div className="inputLogin">
-                        <div className="label">Email</div>
-                        <input type="email"/>
-                    </div> */}
+
                     <div className="wrapBtn d-flex justify-content-center align-items-center">
                         <div className="btnLogin" onClick={(e) => submitLogin(e)}>
                         LOGIN
