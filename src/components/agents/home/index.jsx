@@ -4,7 +4,7 @@ import DetailRequest from 'components/agents/home/part/detailRequest'
 
 function Home() {
     return (
-    //   <EmptyRequest />
+    //   <noRequest />
     <detailRequest />
     )
 }

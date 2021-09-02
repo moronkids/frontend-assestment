@@ -4,11 +4,11 @@ import IconWa from 'assets/img/icons/Whatsapp.svg'
 function DetailRequest() {
     return (
         <div>
-            <section className="home-detail-container">
-                <div className="home-detail-content">
+            <section className="detail-container">
+                <div className="detail-content">
                     <h3>Request saat ini</h3>
                     
-                    <div className="home-detail-card">
+                    <div className="detail-card">
                         <div className="row label">
                             <div className="col-lg-6 label-left">
                                 <p>Waktu Request</p>   

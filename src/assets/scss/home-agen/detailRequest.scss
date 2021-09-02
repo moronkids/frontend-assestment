@@ -1,10 +1,10 @@
-.home-detail-container {
+.detail-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.home-detail-content{
+.detail-content{
    width: 600px;
    height: 400px;
    margin-top: 40px;
@@ -19,7 +19,7 @@
        color: #014A94;
    }
 
-   .home-detail-card{
+   .detail-card{
        width: 800px;
        height: 500px;
        background-color: #fff;
