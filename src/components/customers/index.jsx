@@ -1,6 +1,5 @@
 import { Hooks } from 'providers'
 import React, { useContext, useEffect, useState } from 'react'
-import Home from 'components/customers/home'
 
 function Customer() {
     const { activeTab, setActiveTab } = useContext(Hooks);
@@ -10,8 +9,7 @@ function Customer() {
         switch (activeTab) {
             case 'home':
                 arr.push(
-                    // <div>Home - Customer</div>
-                    <Home />
+                    <div>Home - Customer</div>
                 )
                 break;
             case 'transaction':

@@ -1,5 +1,5 @@
 import React from 'react'
-import IconWa from 'assets/img/icons/Whatsapp.svg'
+import IconWa from 'assets/img/icons/Home.svg'
 
 function DetailRequest() {
     return (

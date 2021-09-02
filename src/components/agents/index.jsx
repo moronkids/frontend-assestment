@@ -1,5 +1,6 @@
 import { Hooks } from 'providers'
 import React, { useContext, useEffect, useState } from 'react'
+import Home from 'components/agents/home';
 
 function Agent() {
     const { activeTab, setActiveTab } = useContext(Hooks);
@@ -9,7 +10,7 @@ function Agent() {
         switch (activeTab) {
             case 'home':
                 arr.push(
-                    <div>Home - Agent</div>
+                    <div><Home /></div>
                 )
                 break;
             case 'profile':
