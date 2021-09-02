@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import GuestRoutes from "routers/guest";
 import LoggedRoutes from "routers/logged";
-// import "assets/scss/styles.scss";
-//drop pages here
+
+
 import Agent from 'pages/agents';
 import Customer from 'pages/customers';
 import LoginPage from 'pages/login';
+
 
 const Routes = () => {
     //for dev mode

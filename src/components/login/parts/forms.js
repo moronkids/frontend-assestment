@@ -33,8 +33,8 @@ function Forms() {
     }, [email, pass])
     return (
         <div className="forms h-100">
-            <div className="wrapLogin">
-                <div className="iconLogin"/>
+            <div className="wrapLogin ">
+                <div className="iconLogin d-flex m-auto"/>
                 <div className="formLogin">
                     <div className="inputLogin">
                         <div className="label">Email</div>

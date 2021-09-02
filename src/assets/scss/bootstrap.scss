@@ -46,6 +46,8 @@
 
 //import custom styling
 @import "../../components/layouts/layouts.scss";
-@import "../scss/home/home";
-@import "../scss/home/home-detail";
+@import "../scss/homeCustomer/home";
+@import "../scss/homeCustomer/home-detail";
 @import "../scss/login/login";
+@import "../scss/homeAgent/detailRequest.scss";
+@import "../scss/homeAgent/noRequest.scss";

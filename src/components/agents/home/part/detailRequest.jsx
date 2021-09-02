@@ -1,17 +1,19 @@
 import React from 'react'
-import WaIcon from 'assets/img/icons/WaIcon.svg';
+import IconWa from 'assets/img/icons/whatsapp.svg'
 
-function DetailTransaction() {
+function DetailRequest() {
     return (
         <div>
-            <section className="home-detail-container">
-                <div className="home-detail-content">
-                    <h2>Transaksi saat ini</h2>
-                    <div className="home-detail-my-card">
+            <section className="detail-container">
+                <div className="detail-content">
+                    <h3>Request saat ini</h3>
+                    
+                    <div className="detail-card">
                         <div className="row label">
                             <div className="col-lg-6 label-left">
-                                <p>Waktu Request</p>
-                            </div>
+                                <p>Waktu Request</p>   
+                            </div> 
+
                             <div className="col-lg-6 label-right">
                                 <p>Jenis Transaksi</p>
                             </div>
@@ -42,7 +44,7 @@ function DetailTransaction() {
                                 <p>Nama Customer</p>
                             </div>
                             <div className="col-lg-6 label-right">
-                                <p>Alamat Anda</p>
+                                <p>Alamat Customer</p>
                             </div>
                         </div>
 
@@ -57,25 +59,7 @@ function DetailTransaction() {
 
                         <div className="row label">
                             <div className="col-lg-6 label-left">
-                                <p>Agen BRILink</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Alamat Agen</p>
-                            </div>
-                        </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left">
-                                <p>Barokah Link</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Jalan Ahmad Yani, No.21 Bogor</p>
-                            </div>
-                        </div>
-
-                        <div className="row label">
-                            <div className="col-lg-6 label-left">
-                                <p>Hubungi Agen</p>
+                                <p>Hubungi Customer</p>
                             </div>
                             <div className="col-lg-6 label-right">
                                 <p>Status</p>
@@ -84,16 +68,20 @@ function DetailTransaction() {
 
                         <div className="row label-content">
                             <div className="col-lg-6 label-left hubungi-wa">
-                                <img src={WaIcon} alt="logo-wa" />
+                                <img src={IconWa} alt="logo-wa" />
                                 <a href="https://api.whatsapp.com/send?phone=6282283775912" target="_blank">082283775912</a>
                             </div>
                             <div className="col-lg-6 label-right status-agen">
-                                <p>Agen sedang dalam perjalanan</p>
+                                <p>Menunggu konfirmasi anda</p>
                             </div>
+                        </div>
+                        
+                        <div className="baris-button">
+                            <button className="btn-action-detail">Tolak</button>
                         </div>
 
                         <div className="baris-button">
-                            <button className="btn-action-detail">Batalkan</button>
+                            <button className="btn-action-detail">Terima</button>
                         </div>
 
                     </div>
@@ -103,4 +91,4 @@ function DetailTransaction() {
     )
 }
 
-export default DetailTransaction
+export default DetailRequest

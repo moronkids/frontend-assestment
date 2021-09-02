@@ -2,6 +2,22 @@
     background: #f6f7fb;
     width: 100vw;
     height: 100vh;
+    & .bb-top {
+        top: 0px;
+        right: 0px;
+        max-width: calc((100vw - 27.125em));
+        max-height: calc(58vh);
+        min-height: 100px;
+        min-width: 200px;
+    }
+    & .bb-btm {
+        bottom: 0px;
+        left: 0px;
+        max-width: calc((100vw - 27.125em));
+        max-height: calc(58vh);
+        min-height: 100px;
+        min-width: 200px;
+    }
     & .bubble-top {
         background-image: url("../../img/loginPage/bubble-top.svg");
         background-repeat: no-repeat;
@@ -23,13 +39,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        @media (max-width: 524px) {
+            width: 100%;
+        }
         & .wrapLogin {
             z-index: 100;
+            @media (max-width: 524px) {
+                z-index: 100;
+                width: 100%;
+                padding: 35px;
+            }
             & .iconLogin {
                 background-image: url("../../img/loginPage/iconLogin.svg");
                 width: 470px;
                 height: 180px;
                 background-size: 470px;
+                @media (max-width: 524px) {
+                    width: 250px;
+                    height: 87px;
+                    background-size: 250px;
+                    background-repeat: no-repeat;
+                }
             }
             & .formLogin {
                 padding-top: 37px;
