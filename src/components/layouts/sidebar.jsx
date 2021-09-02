@@ -48,7 +48,7 @@ function Sidebar(props) {
                         </div>
                     </div>
                     <div className={`iconMenus ${activeTab === 'logout' && `active`} d-flex justify-content-center align-items-center position-relative`}>
-                        <img src={IconLogout} alt="" />
+                        <img src={IconLogout} alt="" onClick={() => { localStorage.removeItem('token'); window.location.href = "/login" }} />
                     </div>
                 </div> : <div className="sidebar__wrap-vertical">
                     <div className="">
@@ -80,7 +80,7 @@ function Sidebar(props) {
                             <img src={activeTab === 'profile' ? IconProfile : IconProfileWhite} alt="" />
                         </div>
                     </div>
-                    <div className={`iconMenus ${activeTab === 'logout' && `active`} d-flex justify-content-center align-items-center position-relative`}>
+                    <div className={`bro iconMenus ${activeTab === 'logout' && `active`} d-flex c justify-content-center align-items-center position-relative`}>
                         <img src={IconLogout} alt="" onClick={() => { localStorage.removeItem('token'); window.location.href = "/login" }} />
                     </div>
                 </div>}

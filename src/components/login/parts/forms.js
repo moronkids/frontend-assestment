@@ -16,7 +16,7 @@ function Forms() {
 
             }
             else if(email === customer){
-                localStorage.setItem('token', 'agent');
+                localStorage.setItem('token', 'customer');
                  return window.location.href = "/"
             }
             else {
