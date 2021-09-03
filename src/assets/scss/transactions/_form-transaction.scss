@@ -1,0 +1,37 @@
+
+/**
+    ini adalah scss untuk mengatur styling form
+*/
+
+.form-container{
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-left: 70px;
+    padding-right: 30px;
+
+    h2{
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #A0A1A3;
+        letter-spacing: 3px;
+    }
+
+    .jenis-layanan{
+        background-color: #014A94;
+        opacity: 54%;
+        width: 200px;
+        text-align: center;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 10px;
+    }
+
+    .my-form{
+        .form-control-label{
+            display: block;
+        }
+    }
+}
