@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import IconBri from "assets/img/icons/Bri-Link.svg";
 import IconHome from "assets/img/icons/Home.svg";
 import IconHomeWhite from "assets/img/icons/Home_w.svg";
@@ -10,7 +10,10 @@ import IconLogout from "assets/img/icons/Logout.svg"
 import { Hooks } from "providers";
 
 function Sidebar(props) {
-    const { activeTab, setActiveTab } = useContext(Hooks)
+    const { activeTab, setActiveTab } = useContext(Hooks);
+    useEffect(() => {
+
+    }, [localStorage.getItem('token')]);
     return (
         <div className="sidebar">
             {props.role === 'customer' ?
@@ -45,7 +48,7 @@ function Sidebar(props) {
                         </div>
                     </div>
                     <div className={`iconMenus ${activeTab === 'logout' && `active`} d-flex justify-content-center align-items-center position-relative`}>
-                        <img src={IconLogout} alt="" />
+                        <img src={IconLogout} alt="" onClick={() => { localStorage.removeItem('token'); window.location.href = "/login" }} />
                     </div>
                 </div> : <div className="sidebar__wrap-vertical">
                     <div className="">
@@ -77,8 +80,8 @@ function Sidebar(props) {
                             <img src={activeTab === 'profile' ? IconProfile : IconProfileWhite} alt="" />
                         </div>
                     </div>
-                    <div className={`iconMenus ${activeTab === 'logout' && `active`} d-flex justify-content-center align-items-center position-relative`}>
-                        <img src={IconLogout} alt="" />
+                    <div className={`bro iconMenus ${activeTab === 'logout' && `active`} d-flex c justify-content-center align-items-center position-relative`}>
+                        <img src={IconLogout} alt="" onClick={() => { localStorage.removeItem('token'); window.location.href = "/login" }} />
                     </div>
                 </div>}
         </div>
