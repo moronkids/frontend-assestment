@@ -1,10 +1,16 @@
-.container{
+
+/**
+    ini adalah scss tampilan saat tidak ada data 
+    transaksi yang terjadi.
+*/
+
+.home-container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.content{
+.home-content{
    width: 600px;
    height: 400px;
    padding: 20px;

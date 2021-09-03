@@ -1,10 +1,15 @@
-.detail-container {
+/**
+    ini adalah scss detail transaksi yang diakses
+    melalui beranda customer
+*/
+
+.home-detail-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.detail-content{
+.home-detail-content{
    width: 600px;
    height: 400px;
    margin-top: 40px;
@@ -19,7 +24,7 @@
        color: #014A94;
    }
 
-   .detail-card{
+   .home-detail-my-card{
        width: 800px;
        height: 500px;
        background-color: #fff;
