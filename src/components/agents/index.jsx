@@ -1,6 +1,7 @@
 import { Hooks } from 'providers'
 import React, { useContext, useEffect, useState } from 'react'
 import Home from 'components/agents/home';
+import Profile from 'components/agents/profile'
 
 function Agent() {
     const { activeTab, setActiveTab } = useContext(Hooks);
@@ -15,7 +16,7 @@ function Agent() {
                 break;
             case 'profile':
                 arr.push(
-                    <div>Profile - Agent</div>
+                    <div><Profile /></div>
                 )
                 break;
             default:

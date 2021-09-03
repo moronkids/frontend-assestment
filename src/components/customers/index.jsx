@@ -1,6 +1,7 @@
 import { Hooks } from 'providers'
 import React, { useContext, useEffect, useState } from 'react'
 import Home from 'components/customers/home'
+import Transaction from 'components/customers/transaction'
 
 function Customer() {
     const { activeTab, setActiveTab } = useContext(Hooks);
@@ -16,7 +17,8 @@ function Customer() {
                 break;
             case 'transaction':
                 arr.push(
-                    <div>Transaction - Customer</div>
+                    // <div>Transaction - Customer</div>
+                    <Transaction />
                 )
                 break;
             default:
