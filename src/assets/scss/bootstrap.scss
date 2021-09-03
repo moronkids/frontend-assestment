@@ -40,5 +40,15 @@
 @import "carousel";
 @import "utilities";
 @import "print";
+
+// import roboto font
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 //import custom styling
+@import "../../assets/scss/agen/profile/index";
 @import "../../components/layouts/layouts.scss";
+@import "../scss/homeCustomer/home";
+@import "../scss/homeCustomer/home-detail";
+@import "../scss/login/login";
+@import "../scss/homeAgent/detailRequest.scss";
+@import "../scss/homeAgent/noRequest.scss";
