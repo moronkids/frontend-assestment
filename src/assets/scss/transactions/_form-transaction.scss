@@ -1,0 +1,71 @@
+
+/**
+    ini adalah scss untuk mengatur styling form
+*/
+
+.form-container{
+
+    width: 800px;
+
+    padding-top: 70px;
+    padding-bottom: 30px;
+    padding-left: 280px;
+    padding-right: 30px;
+
+    h2{
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #A0A1A3;
+        letter-spacing: 3px;
+        padding-bottom: 30px;
+    }
+
+    .jenis-layanan{
+        background-color: #014A94;
+        opacity: 54%;
+        width: 200px;
+        text-align: center;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 10px;
+        margin-right: -100px;
+    }
+
+    .my-form{
+        .form-control-label{
+            display: block;
+            color: #7A7A7A;
+            margin-top: 10px;
+        }
+
+        .form-control-input{
+            width: 600px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .daerah {
+            margin-top: 10px;
+            label{
+                display: block;
+            }
+        }
+
+        .btn-cari-agen{
+            float: right;
+            margin-top: 20px;
+            margin-right: -100px;
+            button{
+                background-color: #F9921C;
+                border-style: none;
+                color: #fff;
+                border-radius: 10px;
+                padding: 10px;    
+                font-size: 14px;
+            }
+        }
+    }
+}

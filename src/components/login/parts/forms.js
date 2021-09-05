@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router';
-
+import { auth } from 'dummies/auth/auth'
 function Forms() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const submitLogin = () => {
-        const agent = 'agent@rakamin.com'
-        const customer = 'customer@rakamin.com'
-        const dummyPass = 'root'
+        const agent = auth().agent/*'agent@rakamin.com'*/
+        const customer = auth().customer /*'customer@rakamin.com'*/
+        const dummyPass = auth().pass/*'root'*/
         if(pass === dummyPass) {
             console.log(email === agent, email === customer)
             if(email === agent){
@@ -25,6 +25,7 @@ function Forms() {
             }
         }
         else {
+            console.log(agent, customer, auth)
             alert('login error failed 2')
         }
     }
