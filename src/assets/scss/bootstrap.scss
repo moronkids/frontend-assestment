@@ -61,3 +61,10 @@
 @import "../scss/login/login";
 @import "../scss/homeAgent/detailRequest.scss";
 @import "../scss/homeAgent/noRequest.scss";
+
+.bodyWrap {
+    padding-top: 134px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
