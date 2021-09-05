@@ -62,6 +62,11 @@
         & td { 
             padding-bottom: 10px;
             padding-right: 30px;
+
+            @media (max-width: 425px){
+            font-size: 14px;
+            
+            }
         }
     }
 
@@ -101,9 +106,17 @@
                     margin-bottom: 10px;   
                 }
 
-                & span {
-                    margin-left: 12px;
+                & label {
+                   text-align: center;
+                   padding-left: 12px;
+                   padding-top: 12px;
                 }
+                
+                & input:checked + label{
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
             }
         }
     }
@@ -118,7 +131,7 @@
 
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             
         }
    
@@ -131,6 +144,11 @@
         border-radius: 6px;
         border: 1px solid #0061ff;
         color: #65c466;
+
+        @media (max-width: 425px){
+            padding-left: 20px;
+            margin-right: 25px;
+        }
         
     }
     & .btn-transaksi-selesai {
@@ -143,8 +161,6 @@
         cursor: pointer;
         background-color: #65c466;
         color: white;
-        
-       
     }
 }
 }
