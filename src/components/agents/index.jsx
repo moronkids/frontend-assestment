@@ -16,7 +16,7 @@ function Agent() {
                 break;
             case 'profile':
                 arr.push(
-                    <div><Profile /></div>
+                    <div ><Profile /></div>
                 )
                 break;
             default:

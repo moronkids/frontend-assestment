@@ -7,12 +7,15 @@ import Section3 from './parts/section_3';
 
 function index() {
     return (
-        <div className="profile">
+      
+        <div className ="profile">
             <Section1 />
             <hr />
             <Section2 />
             <Section3 />
         </div>
+       
+        
 
     )
 }
