@@ -72,4 +72,21 @@
         padding-top: 0px;
         
     }
+
+    /**
+        mobile screen 
+        added by Teguh
+    */
+    @media (max-width: 524px){
+        padding-top: 130px !important;
+        margin-left: 0px !important;
+    }
+
+     /**
+        tablet screen 
+        added by Teguh
+    */
+    @media (max-width: 1024px){
+        margin-left: 0px !important;
+    }
 }
