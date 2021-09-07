@@ -136,7 +136,7 @@ h3 {
         }
     
 
-    @media (max-width: 524px) {
+    @media screen and (max-width: 524px) {
         
         .detail-container {
             margin: auto;
@@ -147,8 +147,20 @@ h3 {
             width: 100%;
         }
 
+        .detail-content {
+            font-size: 10px;
+        }
+
         .label {
             font-size: 14px;
+        }
+
+        .h3 {
+            font-size: 12px;
+        }
+
+        .p {
+            font-size: 10px;
         }
 
     }
