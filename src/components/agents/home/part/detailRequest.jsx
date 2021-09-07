@@ -10,21 +10,26 @@ function DetailRequest() {
 
                     <div className="detail-card">
                         <div className="row label">
-                            
                             <div className="col-lg-6 label-left">
-                                <p>Waktu Request</p>
+                                <h4>Waktu Request</h4>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-left">
+                                        <p>29/08/2021, 13:00 WIB</p>
+                                    </div>
+                                </div>
                             </div>
+
 
                             <div className="col-lg-6 label-right">
                                 <h4>Jenis Transaksi</h4>
-                                        <div className="row label-content">
-                                        <div className="col-lg-6 label-right">
-                                            <p>Setoran Pinjaman</p>
-                                        </div>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-right">
+                                        <p>Setoran Pinjaman</p>
                                     </div>
+                                </div>
                             </div>
-                            
-                            
+
+
                         </div>
 
                         <hr />
@@ -41,53 +46,54 @@ function DetailRequest() {
                         <div className="row label">
                             <div className="col-lg-6 label-left">
                                 <h4>Nama Customer</h4>
-                                    <div className="row label-content">
-                                        <div className="col-lg-6 label-left">
-                                            <p>Mayasari</p>
-                                        </div>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-left">
+                                        <p>Mayasari</p>
                                     </div>
+                                </div>
                             </div>
-                        
+
                             <div className="col-lg-6 label-right">
                                 <h4>Alamat Customer</h4>
-                                    <div className="row label-content">
-                                        <div className="col-lg-6 label-right">
-                                            <p>Jalan Pajajaran, No.119 Bogor</p>
-                                        </div>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-right">
+                                        <p>Jalan Pajajaran, No.119 Bogor</p>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
                         <div className="row label">
                             <div className="col-lg-6 label-left">
                                 <h4>Hubungi Customer</h4>
-                                    <div className="row label-content">
-                                        <div className="col-lg-6 label-left hubungi-wa">
-                                            <img src={IconWa} alt="logo-wa" />
-                                                <a href="https://api.whatsapp.com/send?phone=6282283775912" 
-                                                target="_blank">082283775912</a>
-                                        </div>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-left hubungi-wa">
+                                        <img src={IconWa} alt="logo-wa" />
+                                        <a href="https://api.whatsapp.com/send?phone=6282283775912"
+                                            target="_blank" rel="noreferrer">082283775912</a>
                                     </div>
                                 </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left hubungi-wa">
-                                <img src={IconWa} alt="logo-wa" />
-                                <a href="https://api.whatsapp.com/send?phone=6282283775912" target="_blank" rel="noreferrer">082283775912</a>
                             </div>
+
+                            <div className="col-lg-6 label-right">
+                                <h4>Status</h4>
+                                <div className="row label-content">
+                                    <div className="col-lg-6 label-right status-agen">
+                                        <p>Menunggu konfirmasi anda</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="d-flex" style={{ columnGap: '15px', justifyContent: 'flex-end' }}>
-                            <div className="baris-button">
-                                <button className="btn-action-detail">Tolak</button>
-                            </div>
-
-                            <div className="baris-button">
-                                <button className="btn-action-detail">Terima</button>
-                            </div>
+                        <div className="cancel-button">
+                            <button className="btn-action-detail">Tolak</button>
                         </div>
-                        
+
+                        <div className="accept-button">
+                            <button className="btn-action-detail">Terima</button>
+                        </div>
+
+
 
                     </div>
                 </div>

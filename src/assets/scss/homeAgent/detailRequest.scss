@@ -40,8 +40,6 @@ h3 {
         margin-top: 0.5rem;
     }
 
-    
-
     .detail-card {
         // width: 877px;
         // height: 500px;
@@ -98,8 +96,8 @@ h3 {
 
         .hubungi-wa {
             margin-top: 0.5rem;
-            
-            a { 
+
+            a {
                 font-family: Roboto;
                 font-style: normal;
                 font-weight: normal;
@@ -122,8 +120,8 @@ h3 {
                 float: right;
                 border-style: none;
                 color: #fff;
-                background-color: #65C466;
-                padding:5px 10px 5px 10px;
+                background-color: #65c466;
+                padding: 5px 10px 5px 10px;
                 border-radius: 6px;
                 margin-right: 0.6rem;
                 font-family: "Roboto", sans-serif;
@@ -140,42 +138,54 @@ h3 {
                 border-style: none;
                 color: #fff;
                 background-color: #dc4c44;
-                padding:5px 10px 5px 10px;
+                padding: 5px 10px 5px 10px;
                 border-radius: 6px;
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-size: 17px;
             }
         }
-    
+        // /test
+        @media (max-width: 524px) {
+            .detail-container {
+                margin: auto;
+                width: 100%;
+            }
 
-    @media screen and (max-width: 524px) {
-        
-        .detail-container {
-            margin: auto;
-            width: 100%;
+            .detail-card {
+                width: 100%;
+            }
+
+            .label {
+                font-size: 14px;
+            }
         }
 
-        .detail-card {
-            width: 100%;
-        }
+        @media screen and (max-width: 524px) {
+            .detail-container {
+                margin: auto;
+                width: 100%;
+            }
 
-        .detail-content {
-            font-size: 10px;
-        }
+            .detail-card {
+                width: 100%;
+            }
 
-        .label {
-            font-size: 14px;
-        }
+            .detail-content {
+                font-size: 10px;
+            }
 
-        .h3 {
-            font-size: 12px;
-        }
+            .label {
+                font-size: 14px;
+            }
 
-        .p {
-            font-size: 10px;
-        }
+            .h3 {
+                font-size: 12px;
+            }
 
+            .p {
+                font-size: 10px;
+            }
+        }
     }
-}
 }
