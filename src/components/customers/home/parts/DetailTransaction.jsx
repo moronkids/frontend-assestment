@@ -4,101 +4,80 @@ import WaIcon from 'assets/img/icons/WaIcon.svg';
 function DetailTransaction() {
     return (
         <div>
-            <section className="home-detail-container">
-                <div className="home-detail-content">
-                    <h2>Transaksi saat ini</h2>
-                    <div className="home-detail-my-card">
-                        <div className="row label">
-                            <div className="col-lg-6 label-left">
-                                <p>Waktu Request</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Jenis Transaksi</p>
+            <div>
+                <section className="customer-container">
+                    <div className="customer-content">
+                        <h2>Transaksi Saat Ini</h2>
+
+                        <div className="card myCard">
+                            <div className="card-body my-card-body">
+                                {/* Baris Kontent */}
+                               <div className="row">
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Waktu Request</p>
+                                        <p className="label-content">19/08/2021, 13:20 WIB</p>
+                                    </div>
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Jenis Transaksi</p>
+                                        <p className="label-content">Setoran Tunai</p>
+                                    </div>
+                               </div>
+
+                               <hr className="garis-pertama" />
+                                <div className="row">
+                                <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Nominal Transaksi</p>
+                                    </div>
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-nominal-transaksi">Rp. 10.000.000</p>
+                                    </div>
+                                </div>
+                               <hr className="garis-kedua"/>
+
+                               {/* Baris Kontent */}
+                               <div className="row">
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Nama Customer</p>
+                                        <p className="label-content">Radi Marandika</p>
+                                    </div>
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Alamat Anda</p>
+                                        <p className="label-content">Jalan Ahmad Yamin, No.21 Bogor</p>
+                                    </div>
+                               </div>
+
+                               {/* Baris Kontent */}
+                               <div className="row">
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Agent BRILink</p>
+                                        <p className="label-content">Agus Cipto Sutejo</p>
+                                    </div>
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Alamat Agen</p>
+                                        <p className="label-content">Jalan Sebelahnya, No.87 Bogor</p>
+                                    </div>
+                               </div>
+
+                               {/* Baris Kontent */}
+                               <div className="row">
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Hubungi Agen</p>
+                                        <div className="wrap-konten">
+                                        <p className="label-icon-wa"><img src={WaIcon} alt="icon-wa" /></p>
+                                        <p className="label-nomor"><a href="#" className="link-nomor">0812 2243 1201</a></p>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6 col-md-12 col-12">
+                                        <p className="label-judul">Status</p>
+                                        <p className="label-content status">Agen dalam perjalanan</p>
+                                    </div>
+                               </div>
+
                             </div>
                         </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left">
-                                <p>29/08/2021, 13:00 WIB</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Setoran Pinjaman</p>
-                            </div>
-                        </div>
-
-                        <hr />
-                        <div className="row nominal-content">
-                            <div className="col-lg-6 nominal-left">
-                                <p>Nominal Transaksi</p>
-                            </div>
-                            <div className="col-lg-6 nominal-right">
-                                <p>Rp. 10.000.000</p>
-                            </div>
-                        </div>
-                        <hr />
-
-                        <div className="row label">
-                            <div className="col-lg-6 label-left">
-                                <p>Nama Customer</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Alamat Anda</p>
-                            </div>
-                        </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left">
-                                <p>Mayasari</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Jalan Pajajaran, No.119 Bogor</p>
-                            </div>
-                        </div>
-
-                        <div className="row label">
-                            <div className="col-lg-6 label-left">
-                                <p>Agen BRILink</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Alamat Agen</p>
-                            </div>
-                        </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left">
-                                <p>Barokah Link</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Jalan Ahmad Yani, No.21 Bogor</p>
-                            </div>
-                        </div>
-
-                        <div className="row label">
-                            <div className="col-lg-6 label-left">
-                                <p>Hubungi Agen</p>
-                            </div>
-                            <div className="col-lg-6 label-right">
-                                <p>Status</p>
-                            </div>
-                        </div>
-
-                        <div className="row label-content">
-                            <div className="col-lg-6 label-left hubungi-wa">
-                                <img src={WaIcon} alt="logo-wa" />
-                                <a href="https://api.whatsapp.com/send?phone=6282283775912" target="_blank">082283775912</a>
-                            </div>
-                            <div className="col-lg-6 label-right status-agen">
-                                <p>Agen sedang dalam perjalanan</p>
-                            </div>
-                        </div>
-
-                        <div className="baris-button">
-                            <button className="btn-action-detail">Batalkan</button>
-                        </div>
-
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     )
 }

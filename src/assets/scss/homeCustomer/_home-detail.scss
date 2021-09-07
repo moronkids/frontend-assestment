@@ -3,96 +3,105 @@
     melalui beranda customer
 */
 
-.home-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+$color-label: #888888;
+$weight-font-content: 700;
+
+.bodyWrap{
+
+    font-family: 'Roboto', sans-serif;
+
+    .customer-container{
+        min-width: 877px;
+        // min-height: 616px;
+        width: 100% !important;
+        height: fit-content;
+
+        @media(max-width : 574px){
+           min-width: fit-content; 
+           width: 100% !important;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #014A94;
+            padding-bottom: 20px;
+
+            @media(max-width : 574px){
+                padding-left: 20px;
+             }
+        }
+
+
+        /* .myCard {
+            margin-bottom: 60px;
+        } */
+
+        .my-card-body {
+            padding: 20px;
+
+            @media (max-width: 574px) {
+                padding: 40px;
+            }
+
+            .label-judul {
+                color: $color-label;
+                font-size: 14px;
+            }
+
+            .label-content {
+                margin-top: -15px;
+                font-size: 16px;
+                font-weight: $weight-font-content;
+            }
+
+            .status {
+                color: #014A94 !important;
+            }
+
+            .garis-pertama {
+                padding-bottom: 6px;
+                margin-top: -4px;
+            }
+
+            .garis-kedua {
+                margin-top: -1px;
+            }
+
+            .label-nominal-transaksi {
+                color: #65C466;
+                font-weight: bold;
+            }
+
+            .wrap-konten {
+                margin-top: -12px !important;
+                @media (max-width: 574px){
+                    width: 100%;
+                    margin-bottom: 10px !important;
+                }
+            }
+
+            .label-icon-wa {
+                display: inline;
+                img {
+                    width: 20px;
+                    margin-top: -3px;
+                }
+            }
+
+            .label-nomor {
+
+                display: inline;
+                margin-left: 10px;
+
+                .link-nomor {
+                    text-decoration: none;
+                }
+            }
+
+          
+        }
+
+    }
 }
 
-.home-detail-content {
-    max-width: 877px;
-    min-height: 616px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: auto;
-    //    margin-left: -170px;
 
-    h2 {
-        font-family: "Roboto", sans-serif;
-        font-size: 24px;
-        font-weight: bold;
-        padding-bottom: 10px;
-        color: #014a94;
-    }
-
-    .home-detail-my-card {
-        max-width: 877px;
-        width: 100%;
-        min-height: 616px;
-        background-color: #fff;
-        border-radius: 5px;
-        padding: 30px;
-
-        .label {
-            font-size: 13px;
-            color: #888;
-            font-family: "Roboto", sans-serif;
-        }
-
-        .label-content {
-            font-size: 16px;
-            font-weight: 400;
-            font-family: "Roboto", sans-serif;
-            color: #32344b;
-            margin-top: -13px;
-        }
-
-        .nominal-content {
-            padding-top: 3px;
-            padding-bottom: 3px;
-            font-family: "Roboto", sans-serif;
-            font-weight: 400;
-
-            .nominal-right {
-                color: #65c466;
-                font-weight: 600;
-            }
-        }
-
-        hr {
-            margin-top: -3px;
-        }
-
-        .hubungi-wa {
-            a {
-                margin-left: 8px;
-                text-decoration: underline;
-            }
-        }
-
-        .status-agen {
-            font-family: "Roboto", sans-serif;
-            font-weight: 500;
-            color: #014a94;
-        }
-
-        .baris-button {
-            margin-top: 20px;
-
-            button {
-                float: right;
-                border-style: none;
-                color: #fff;
-                background-color: #dc4c44;
-                padding-top: 5px;
-                padding-bottom: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                border-radius: 10px;
-                font-family: "Roboto", sans-serif;
-                font-weight: 400;
-                font-size: 13px;
-            }
-        }
-    }
-}
