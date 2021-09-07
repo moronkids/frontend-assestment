@@ -5,7 +5,6 @@ function Agents() {
     return (
         <>
             <Agent/>
-            <Profile/>
         </>
     )
 }

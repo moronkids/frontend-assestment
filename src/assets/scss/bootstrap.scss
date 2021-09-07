@@ -40,5 +40,60 @@
 @import "carousel";
 @import "utilities";
 @import "print";
+
+// import roboto font
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 //import custom styling
+@import "../../assets/scss/agen/profile/agentProfile";
 @import "../../components/layouts/layouts.scss";
+
+// semua scss tampilan menu nav home
+// @import "../scss/home/home";
+// @import "../scss/home/home-detail";
+
+// semua scss tampilan nav transaksi
+@import "../scss/transactions/choose-transaction";
+@import "../scss/transactions/form-transaction";
+@import "../scss/transactions/table-agent-transaction";
+@import "../scss/homeCustomer/home";
+@import "../scss/homeCustomer/home-detail";
+@import "../scss/login/login";
+@import "../scss/homeAgent/detailRequest.scss";
+@import "../scss/homeAgent/noRequest.scss";
+
+.bodyWrap {
+    padding: 0 30px;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 135px;
+
+    @media (max-width: 524px) {
+        padding: 0px;
+        padding-top: 50px;
+        margin: 20px;
+    }
+    // @media (max-width: 425px) {
+    //     padding-top: 0px;
+    // }
+
+    // /**
+    //     mobile screen
+    //     added by Teguh
+    // */
+    // @media (max-width: 524px) {
+    //     padding-top: 130px !important;
+    //     margin-left: 0px !important;
+    // }
+
+    // /**
+    //     tablet screen
+    //     added by Teguh
+    // */
+    // @media (max-width: 1024px) {
+    //     margin-left: 0px !important;
+    // }
+}

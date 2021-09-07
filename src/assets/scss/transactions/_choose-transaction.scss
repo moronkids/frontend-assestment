@@ -1,0 +1,70 @@
+
+/**
+    ini adalah scss untuk tampilan jenis transaksi
+    (3 Kolom layanan transaksi dari BRILink)
+*/
+
+.transaksi-pilih-content{
+
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-left: 70px;
+    padding-right: 30px;
+
+    h2{
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        color: #A0A1A3;
+        letter-spacing: 3px;
+    }
+
+    .baris-card-opsi{
+
+        padding-top: 30px;
+
+        .card-konten {
+            width: 300px;
+            height: 400px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .judul{
+                .judul-atas{
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+
+                .tunai{
+                    margin-top: -150px;
+                }
+
+                .judul-bawah{
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 30px;
+                    margin-top: -15px;
+                    font-weight: bold;
+                }
+            }
+
+            button{
+                display: block;
+                border-style: none;
+                background-color: #749BC3;
+                color: #fff;
+                width: 200px;
+                text-align: center;
+                border-radius: 30px;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
