@@ -5,6 +5,13 @@
     width: 100%;
 }
 
+h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    color: #014a94;
+}
 .detail-content {
     // width: 877px;
     max-width: 877px;
@@ -24,12 +31,13 @@
         height: fit-content;
     }
 
-    h2 {
-        font-family: "Roboto", sans-serif;
-        font-size: 24px;
-        font-weight: bold;
-        padding-bottom: 10px;
-        color: #014a94;
+    p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 168.19%;
+        margin-top: 0.5rem;
     }
 
     .detail-card {
@@ -50,17 +58,24 @@
         //     height: fit-content;
         // }
         .label {
-            font-size: 13px;
+            font-size: 12em;
             color: #888;
             font-family: "Roboto", sans-serif;
         }
 
+        h4 {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 168.19%;
+        }
+
         .label-content {
             font-size: 16px;
-            font-weight: 400;
             font-family: "Roboto", sans-serif;
             color: #32344b;
-            margin-top: -13px;
+            margin-top: -11px;
         }
 
         .nominal-content {
@@ -80,8 +95,14 @@
         }
 
         .hubungi-wa {
+            margin-top: 0.5rem;
+
             a {
-                margin-left: 8px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                padding: 15px;
                 text-decoration: underline;
             }
         }
@@ -92,7 +113,24 @@
             color: #014a94;
         }
 
-        .baris-button {
+        .accept-button {
+            margin-top: 20px;
+
+            button {
+                float: right;
+                border-style: none;
+                color: #fff;
+                background-color: #65c466;
+                padding: 5px 10px 5px 10px;
+                border-radius: 6px;
+                margin-right: 0.6rem;
+                font-family: "Roboto", sans-serif;
+                font-weight: 400;
+                font-size: 17px;
+            }
+        }
+
+        .cancel-button {
             margin-top: 20px;
 
             button {
@@ -100,14 +138,26 @@
                 border-style: none;
                 color: #fff;
                 background-color: #dc4c44;
-                padding-top: 5px;
-                padding-bottom: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                border-radius: 10px;
+                padding: 5px 10px 5px 10px;
+                border-radius: 6px;
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
-                font-size: 13px;
+                font-size: 17px;
+            }
+        }
+
+        @media (max-width: 524px) {
+            .detail-container {
+                margin: auto;
+                width: 100%;
+            }
+
+            .detail-card {
+                width: 100%;
+            }
+
+            .label {
+                font-size: 14px;
             }
         }
     }
