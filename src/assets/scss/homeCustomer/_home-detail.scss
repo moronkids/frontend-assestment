@@ -26,21 +26,33 @@ $weight-font-content: 700;
             color: #014A94;
             padding-bottom: 20px;
 
-            @media(max-width : 574px){
-                padding-left: 20px;
+             @media(max-width : 574px){
+                padding-left: 20px !important;
+             }
+
+             @media(max-width: 1024px) {
+                padding-left: 80px ;
              }
         }
 
 
-        /* .myCard {
-            margin-bottom: 60px;
-        } */
+        .myCard {
+            // margin-bottom: 60px;
+
+            @media (max-width: 524px) {
+                padding: 5px !important;
+            }
+
+            @media (max-width: 1024px) {
+                padding: 50px;
+            }
+        }
 
         .my-card-body {
             padding: 20px;
 
             @media (max-width: 574px) {
-                padding: 40px;
+                padding: 10px;
             }
 
             .label-judul {
