@@ -4,7 +4,7 @@ export default function index(props) {
     return (
         <div className='layouts'>
             <Sidebar role={localStorage.getItem('token') === 'agent' ? 'agent' : 'customer'} />
-            <div className="bodyWrap" style={{ marginLeft: '135px' }}>
+            <div className="bodyWrap">
                 {props.children}
             </div>
         </div>

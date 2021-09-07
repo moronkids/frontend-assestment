@@ -67,4 +67,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 135px;
+    @media (max-width: 524px) {
+        padding-top: 50px;
+        margin: 20px;
+    }
 }

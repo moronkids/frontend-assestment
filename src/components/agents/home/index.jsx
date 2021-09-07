@@ -4,8 +4,10 @@ import DetailRequest from 'components/agents/home/part/detailRequest'
 
 function Home() {
     return (
-    //   <noRequest />
-    <DetailRequest />
+        //   <noRequest />
+        <>
+            <DetailRequest />
+        </>
     )
 }
 

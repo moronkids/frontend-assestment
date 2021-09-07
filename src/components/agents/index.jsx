@@ -11,12 +11,12 @@ function Agent() {
         switch (activeTab) {
             case 'home':
                 arr.push(
-                    <div><Home /></div>
+                    <><Home /></>
                 )
                 break;
             case 'profile':
                 arr.push(
-                    <div><Profile /></div>
+                    <><Profile /></>
                 )
                 break;
             default:
