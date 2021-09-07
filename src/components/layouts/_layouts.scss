@@ -9,6 +9,11 @@ body {
         background-color: #f9921c;
         height: 100vh;
         width: 100%;
+        @media (max-width: 524px) {
+            // height: fit-content;
+            display: none;
+            width: 100%;
+        }
         &__wrap-vertical {
             height: 100%;
             display: flex;

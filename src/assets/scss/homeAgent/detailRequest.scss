@@ -2,18 +2,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .detail-content {
-    // width: 600px;
+    // width: 877px;
     max-width: 877px;
     min-height: 616px;
     width: 100%;
-    height: fit-content;
+    height: 100%;
     // height: 400px;
     // margin-top: 40px;
     margin-bottom: auto;
     //    margin-left: -170px;
+    @media (max-width: 1200px) {
+        width: 100%;
+        // margin: 0 30px;
+    }
+    @media (max-width: 524px) {
+        width: 100%;
+        height: fit-content;
+    }
 
     h2 {
         font-family: "Roboto", sans-serif;
@@ -24,15 +33,22 @@
     }
 
     .detail-card {
-        // width: 800px;
+        // width: 877px;
         // height: 500px;
-        width: 877px;
-        min-height: 616px;
-        height: fit-content;
+        // width: 100%;
+        // max-width: 877px;
+        // min-height: 616px;
+        // height: fit-content;
         background-color: #fff;
         border-radius: 5px;
         padding: 30px;
+        height: 100%;
+        // width: 100%;
 
+        // @media (max-width: 524px) {
+        //     width: 100%;
+        //     height: fit-content;
+        // }
         .label {
             font-size: 13px;
             color: #888;

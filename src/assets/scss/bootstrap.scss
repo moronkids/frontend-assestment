@@ -63,13 +63,37 @@
 @import "../scss/homeAgent/noRequest.scss";
 
 .bodyWrap {
+    padding: 0 30px;
     padding-top: 130px;
+    padding-bottom: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 135px;
 
-    @media (max-width: 425px){
-        padding-top: 0px;
-        
+    @media (max-width: 524px) {
+        padding: 0px;
+        padding-top: 50px;
+        margin: 20px;
     }
+    // @media (max-width: 425px) {
+    //     padding-top: 0px;
+    // }
+
+    // /**
+    //     mobile screen
+    //     added by Teguh
+    // */
+    // @media (max-width: 524px) {
+    //     padding-top: 130px !important;
+    //     margin-left: 0px !important;
+    // }
+
+    // /**
+    //     tablet screen
+    //     added by Teguh
+    // */
+    // @media (max-width: 1024px) {
+    //     margin-left: 0px !important;
+    // }
 }
