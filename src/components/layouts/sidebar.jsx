@@ -18,6 +18,7 @@ function Sidebar(props) {
     useEffect(() => {
 
     }, [localStorage.getItem('token')]);
+    // console.log(loc.pathname.split('/'))
     return (
         <div className="sidebar">
             {props.role === 'customer' ?
@@ -50,8 +51,8 @@ function Sidebar(props) {
                             </div></Link>
 
                         <Link to="/transaction">
-                            <div className={`iconMenus ${loc.pathname === '/transaction' && `active`}  d-flex justify-content-center align-items-center position-relative`} onClick={(e) => setActiveTab('transaction')}>
-                                <img src={loc.pathname === '/transaction' ? IconTransaction : IconTransactionWhite} alt="" />
+                            <div className={`iconMenus ${(loc.pathname === '/transaction' || loc.pathname.split('/')[1] === 'transaction') && `active`}  d-flex justify-content-center align-items-center position-relative`} onClick={(e) => setActiveTab('transaction')}>
+                                <img src={(loc.pathname === '/transaction' || loc.pathname.split('/')[1] === 'transaction') ? IconTransaction : IconTransactionWhite} alt="" />
                             </div></Link>
                     </div>
                     <Link to="/">
