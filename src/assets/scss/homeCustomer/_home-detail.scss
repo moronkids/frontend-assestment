@@ -6,47 +6,33 @@
 $color-label: #888888;
 $weight-font-content: 700;
 
-.bodyWrap{
+.bodyWrap {
+    font-family: "Roboto", sans-serif;
 
-    font-family: 'Roboto', sans-serif;
-
-    .customer-container{
-        min-width: 877px;
+    .customer-container {
+        max-width: 877px;
         // min-height: 616px;
         width: 100% !important;
         height: fit-content;
-
-        @media(max-width : 574px){
-           min-width: fit-content; 
-           width: 100% !important;
+        // padding: 0 30px;
+        @media (max-width: 574px) {
+            min-width: fit-content;
+            width: 100% !important;
         }
 
         h2 {
             font-size: 20px;
-            color: #014A94;
+            color: #014a94;
             padding-bottom: 20px;
 
-             @media(max-width : 574px){
-                padding-left: 20px !important;
-             }
-
-             @media(max-width: 1024px) {
-                padding-left: 80px ;
-             }
-        }
-
-
-        .myCard {
-            // margin-bottom: 60px;
-
-            @media (max-width: 524px) {
-                padding: 5px !important;
-            }
-
-            @media (max-width: 1024px) {
-                padding: 50px;
+            @media (max-width: 574px) {
+                padding-left: 20px;
             }
         }
+
+        /* .myCard {
+            margin-bottom: 60px;
+        } */
 
         .my-card-body {
             padding: 20px;
@@ -67,7 +53,7 @@ $weight-font-content: 700;
             }
 
             .status {
-                color: #014A94 !important;
+                color: #014a94 !important;
             }
 
             .garis-pertama {
@@ -80,13 +66,13 @@ $weight-font-content: 700;
             }
 
             .label-nominal-transaksi {
-                color: #65C466;
+                color: #65c466;
                 font-weight: bold;
             }
 
             .wrap-konten {
                 margin-top: -12px !important;
-                @media (max-width: 574px){
+                @media (max-width: 574px) {
                     width: 100%;
                     margin-bottom: 10px !important;
                 }
@@ -101,7 +87,6 @@ $weight-font-content: 700;
             }
 
             .label-nomor {
-
                 display: inline;
                 margin-left: 10px;
 
@@ -109,11 +94,6 @@ $weight-font-content: 700;
                     text-decoration: none;
                 }
             }
-
-          
         }
-
     }
 }
-
-

@@ -18,7 +18,7 @@ function Customer() {
             case 'transaction':
                 arr.push(
                     // <div>Transaction - Customer</div>
-                    <Transaction />
+                    // <Transaction />
                 )
                 break;
             default:
