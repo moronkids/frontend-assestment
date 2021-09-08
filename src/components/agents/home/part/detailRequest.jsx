@@ -72,7 +72,11 @@ function DetailRequest() {
                                 <a href="https://api.whatsapp.com/send?phone=6282283775912" target="_blank" rel="noreferrer">082283775912</a>
                             </div>
                             <div className="col-lg-6 label-right status-agen">
-                                <p>Menunggu konfirmasi anda</p>
+
+                                {
+                                    true ? (<p>Menunggu konfirmasi anda</p>) : <p>Agen dalam perjalanan</p>
+                                }
+
                             </div>
                         </div>
 
@@ -81,9 +85,13 @@ function DetailRequest() {
                                 <button className="btn-action-detail">Tolak</button>
                             </div>
 
-                            <div className="baris-button">
-                                <button className="btn-action-detail">Terima</button>
-                            </div>
+                            {
+                                true ? (<div className="baris-button">
+                                    <button className="btn-action-detail">Terima</button>
+                                </div>) : <div className="baris-button">
+                                    <button className="btn-action-detail">adadeh</button>
+                                </div>
+                            }
                         </div>
 
                     </div>
