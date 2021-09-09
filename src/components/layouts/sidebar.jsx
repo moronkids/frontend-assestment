@@ -86,7 +86,8 @@ function Sidebar(props) {
                             </div>
                         </div>
 
-                        <div className={`iconMenus ${activeTab === 'profile' && `active`}  d-flex justify-content-center align-items-center position-relative`} onClick={(e) => setActiveTab('profile')}>
+                        <div className={`iconMenus ${activeTab === 'profile' && `active`}  
+                        d-flex justify-content-center align-items-center position-relative`} onClick={(e) => setActiveTab('profile')}>
                             <img src={activeTab === 'profile' ? IconProfile : IconProfileWhite} alt="" />
                         </div>
                     </div>
