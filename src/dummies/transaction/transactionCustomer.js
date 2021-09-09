@@ -5,7 +5,7 @@ export const transactionCustomer = () => {
         message : "berhasil",
         data: [
             {
-                status: 1,
+                status: 3,
                 jenis_transaksi: "Setoran Pinjaman",
                 nominal_transaksi_idr: 10000000,
                 alamat_cust_provinsi: "JAWA BARAT",
