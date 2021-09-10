@@ -7,6 +7,9 @@ const Logged = ({ component: Component, ...rest }) => {
   if (token === null) {
     return <Redirect to="/login" />
   }
+  if(window.location.pathname === '/'){
+    return <Redirect to="/home" />
+  }
   return (
     <Route
       {...rest}

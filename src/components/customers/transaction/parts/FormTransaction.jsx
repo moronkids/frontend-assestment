@@ -1,65 +1,113 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Select from 'react-select'
 
+import { DataGrid } from '@material-ui/data-grid';
+import { useParams } from 'react-router-dom';
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+]
+const customStyles = {
+    control: (provided, state) => ({
+        ...provided,
+        background: '#ffffff',
+        border: '1px solid #333333',
+        boxSizing: 'border-box',
+        borderRadius: ' 10px',
+        height: ' 60px'
+    })
+}
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    {
+        field: 'NamaAgen',
+        headerName: 'Nama Agen',
+        width: 200,
+        editable: true,
+    },
+    {
+        field: 'NomorTelp',
+        headerName: 'Nomor Telp',
+        width: 200,
+        editable: true,
+    },
+    {
+        field: 'Alamat',
+        headerName: 'Alamat',
+        type: 'number',
+        width: 200,
+        editable: true,
+    }
+];
+
+const rows = [
+    { id: 1, NamaAgen: 'Snow', NomorTelp: 'Jon', Alamat: 35 },
+    { id: 2, NamaAgen: 'Lannister', NomorTelp: 'Cersei', Alamat: 42 },
+    { id: 3, NamaAgen: 'Lannister', NomorTelp: 'Jaime', Alamat: 45 },
+    { id: 4, NamaAgen: 'Stark', NomorTelp: 'Arya', Alamat: 16 },
+    { id: 5, NamaAgen: 'Targaryen', NomorTelp: 'Daenerys', Alamat: null },
+    { id: 6, NamaAgen: 'Melisandre', NomorTelp: null, Alamat: 150 },
+    { id: 7, NamaAgen: 'Clifford', NomorTelp: 'Ferrara', Alamat: 44 },
+    { id: 8, NamaAgen: 'Frances', NomorTelp: 'Rossini', Alamat: 36 },
+    { id: 9, NamaAgen: 'Roxie', NomorTelp: 'Harvey', Alamat: 65 },
+];
 function FormTransaction() {
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }, [])
+    const { type } = useParams()
     return (
-        <div>
-            <section className="form-container">
-                <div className="form-content">
-
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <h2 className="judul">JENIS TRANSAKSI</h2>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="jenis-layanan float-right">
-                                Setoran Pinjaman
-                            </div>
-                        </div>
+        <React.Fragment>
+            {loading ? <div>loading to get your data...</div> : <div className="form__wrap">
+                <div className="form__title">
+                    <h1>Jenis Transaksi</h1>
+                    <div className="lblSetoran text-capitalize">
+                        {type.replace('_', '-')}
                     </div>
-
-                    <form action="" className="my-form">
-                        <div className="baris row">
-                            <div className="col-lg-8">
-                                <label className="form-control-label" htmlFor="nominal-transaksi">Nominal Transaksi</label>
-                                <input type="number" className="form-control-input" name="nominal transaksi" id="nominal-transaksi" placeholder="Rp. 2.000.000"/>
-                            </div>
-                        </div>
-
-                        <div className="baris">
-                            <label className="form-control-label" htmlFor="alamat-lengkap">Alamat Lengkap</label>
-                            <input type="text" className="form-control-input" name="alamat-lengkap" id="alamat-lengkap" placeholder="Jalan Pattimura No.12 Blok C"/>
-                        </div>
-
-                        <div className="baris daerah row">
-                            <div className="col-lg-4">
-                                <label className="form-control-label" htmlFor="provinsi">Provinsi</label>
-                                <select name="provinsi" id="provinsi">
-                                    <option value="#">-- PILIH --</option>
-                                </select>
-                            </div>
-
-                            <div className="col-lg-4">
-                                <label className="form-control-label"  htmlFor="kabupaten">Kabupaten</label>
-                                <select name="kabupaten" id="kabupaten">
-                                    <option value="#">-- PILIH --</option>
-                                </select>
-                            </div>
-                            <div className="col-lg-4">
-                                <label className="form-control-label" htmlFor="kecamatan">Kecamatan</label>
-                                <select name="kecamatan" id="kecamatan">
-                                    <option value="#">-- PILIH --</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="baris btn-cari-agen">
-                            <button>Cari Agen</button>
-                        </div>
-                    </form>
                 </div>
-            </section>
-        </div>
+                <div className="boxInput">
+                    <div className="formInput">
+                        <label htmlFor="">Nominal Transaksi</label>
+                        <input type="text" />
+                    </div>
+                    <div className="formInput">
+                        <label htmlFor="">Nominal Transaksi</label>
+                        <input type="text" />
+                    </div>
+                    <div className="formInput__dropdown">
+                        <div>
+                            <label htmlFor="">Provinsi</label>
+                            <Select styles={customStyles} options={options} />
+                        </div>
+                        <div>
+                            <label htmlFor="">Kabupaten/ Kota</label>
+                            <Select styles={customStyles} options={options} />
+                        </div>
+                        <div>
+                            <label htmlFor="">Kecamatan</label>
+                            <Select styles={customStyles} options={options} />
+                        </div>
+
+
+                    </div>
+                </div>
+                <div style={{ height: 400, width: '100%', background: '#FFFFFF', marginTop: '40px' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={5}
+                        checkboxSelection
+                        disableSelectionOnClick
+                    />
+                </div>
+            </div>}
+        </React.Fragment>
     )
 }
 
-export default FormTransaction;
+export default FormTransaction
