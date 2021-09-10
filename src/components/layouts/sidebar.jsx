@@ -64,32 +64,35 @@ function Sidebar(props) {
                         <Link to="/home">
                             <div className="position-relative">
                                 <div
-                                    className={`iconBri position-absolute radiusBottomRight ${activeTab === 'home' ? `d-block` : `d-none`}`}
+                                    className={`iconBri position-absolute radiusBottomRight ${loc.pathname === '/home' ? `d-block` : `d-none`}`}
                                     style={{ background: "#E5E5E5", height: '200px' }}
                                 />
                                 <div
-                                    className={`iconBri ${activeTab === "home" && "radius"
+                                    className={`iconBri ${loc.pathname === '/home' && "radius"
                                         } d-flex justify-content-center align-items-center position-relative`}
                                 >
                                     <img src={IconBri} alt="" srcset="" />
                                 </div>
                             </div></Link>
 
-                        <div className="position-relative" onClick={(e) => setActiveTab('home')}>
-                            <div
-                                className={`iconBri position-absolute radiusBottomRightMini ${activeTab === 'profile' ? `d-block` : `d-none`}`}
-                                style={{ background: "#E5E5E5", height: '200px' }}
-                            />
-                            <div className={`iconMenus ${loc.pathname === '/home' && `active`} ${activeTab === "profile" && "radius"
-                                } d-flex justify-content-center align-items-center position-relative`}>
-                                <img src={loc.pathname === '/home' ? IconHome : IconHomeWhite} alt="" />
-                            </div>
-                        </div>
+                        <Link to='/home'>
+                            <div className="position-relative" onClick={(e) => setActiveTab('home')}>
+                                <div
+                                    className={`iconBri position-absolute radiusBottomRightMini ${loc.pathname === '/profile' ? `d-block` : `d-none`}`}
+                                    style={{ background: "#E5E5E5", height: '200px' }}
+                                />
+                                <div className={`iconMenus ${loc.pathname === '/home' && `active`} ${loc.pathname === "/profile" && "radius"
+                                    } d-flex justify-content-center align-items-center position-relative`}>
+                                    <img src={loc.pathname === '/home' ? IconHome : IconHomeWhite} alt="" />
+                                </div>
+                            </div></Link>
 
-                        <div className={`iconMenus ${activeTab === 'profile' && `active`}  
+                        <Link to="/profile">
+                            <div className={`iconMenus ${loc.pathname === '/profile' && `active`}
                         d-flex justify-content-center align-items-center position-relative`} onClick={(e) => setActiveTab('profile')}>
-                            <img src={activeTab === 'profile' ? IconProfile : IconProfileWhite} alt="" />
-                        </div>
+                                <img src={loc.pathname === '/profile' ? IconProfile : IconProfileWhite} alt="" />
+                            </div>
+                        </Link>
                     </div>
                     <Link to="/login">
                         <div className={`bro iconMenus ${activeTab === 'logout' && `active`} d-flex c justify-content-center align-items-center position-relative`}>

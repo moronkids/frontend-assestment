@@ -2,6 +2,14 @@
 body {
     background: #e5e5e5;
 }
+a {
+    text-decoration: unset;
+    color: gray;
+    &:hover {
+        text-decoration: unset;
+        color: rgb(36, 36, 36);
+    }
+}
 .layouts {
     & .sidebar {
         max-width: 130px;
@@ -62,6 +70,17 @@ body {
         // transform: translate3d(0, 0, 0);
         transform: translate3d(-100%, 0, 0);
         transition: all 0.5s;
+        padding-top: 90px;
+        padding-left: 20px;
+        ul {
+            font-family: Roboto, "sans-serif";
+            font-weight: bold;
+            list-style-type: none; /* Remove bullets */
+            li {
+                cursor: pointer;
+                line-height: 30px;
+            }
+        }
         @media (max-width: 524px) {
             // display: flex;
             width: 75vw;

@@ -24,12 +24,13 @@ const Routes = () => {
     return (
         <>
             <Switch>
-             
+
                 {/* logged routes */}
                 {/* <LoggedRoutes exact path="/" component={Homepage} /> */}
                 {/* <LoggedRoutes exact path="/login" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/> */}
                 <LoggedRoutes exact path="/" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/home" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
+                <LoggedRoutes exact path="/profile" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/transaction" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/transaction/:type" component={localStorage.getItem('token') === 'customer' ? TypeTransaction : Agent}/>
                 {/* logged routes */}
@@ -38,10 +39,11 @@ const Routes = () => {
                 <GuestRoutes exact path="/login" component={LoginPage} />
 
                 {/* guest routes */}
-            <Route path="/notfound">
+                <Route component={NotFound}/>
+            {/* <Route path="/notfound">
                 <NotFound/>
-            </Route>
-                
+            </Route> */}
+
             </Switch>
         </>
     )
