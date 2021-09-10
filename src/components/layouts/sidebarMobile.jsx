@@ -18,7 +18,9 @@ function SidebarMobile(props) {
                             <li>Transaction</li>
                         </Link>
                     }
-
+                    <Link to="/login" onClick={e => localStorage.removeItem('token')}>
+                        Logout
+                    </Link>
                 </ul >
             </div >
             <div className={`d-none position-absolute ${props.data && 'd-block'}`} style={{
