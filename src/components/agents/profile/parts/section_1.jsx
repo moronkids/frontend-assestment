@@ -3,24 +3,24 @@ import Start from 'assets/img/icons/Start.svg'
 
 
 
-function section_1(){
-    return(
+function section_1() {
+    return (
         <div className="container_section_1">
-             <img className="img_section_1" src="" alt="" />
+            <img className="img_section_1" src="" alt="" />
             <div className="desc_section_1">
                 <h1 className="title_section_1">Barokah</h1>
                 <h5>Rating</h5>
-               <div className="rating">
-                <label htmlFor="rate">10</label>
-                <div>
-                <span><img src={Start} alt="" /></span>
-                <span><img src={Start} alt="" /></span>
-                <span><img src={Start} alt="" /></span>
-                <span><img src={Start} alt="" /></span>
-                <span><img src={Start} alt="" /></span>
+                <div className="rating">
+                    <label htmlFor="rate">10</label>
+                    <div>
+                        <span><img src={Start} alt="" /></span>
+                        <span><img src={Start} alt="" /></span>
+                        <span><img src={Start} alt="" /></span>
+                        <span><img src={Start} alt="" /></span>
+                        <span><img src={Start} alt="" /></span>
+                    </div>
                 </div>
-               </div>
-                
+
                 <table >
                     <tr >
                         <td>Alamat</td>
@@ -35,11 +35,11 @@ function section_1(){
                         <a href=""><td >083820201234</td></a>
                     </tr>
                 </table>
-               
+
             </div>
-       
+
         </div>
-        
+
     );
 }
 
