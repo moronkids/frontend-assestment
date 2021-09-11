@@ -58,7 +58,7 @@ function DetailRequest() {
                             
 
                              <div className="col-lg-6 col-md-12 col-12">
-                                <p className="label-right space">Status</p>
+                                <p className="label-right space-status">Status</p>
                                 <p className="label-content status-agen">
                                 {
                                     true ? (<p>Menunggu konfirmasi anda</p>) : <p>Agen dalam perjalanan</p>
