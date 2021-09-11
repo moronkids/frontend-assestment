@@ -4,9 +4,11 @@ import GuestRoutes from "routers/guest";
 import LoggedRoutes from "routers/logged";
 import TypeTransaction from 'components/customers/transaction/parts/FormTransaction'
 
+
 import Agent from 'pages/agents';
 import Customer from 'pages/customers';
 import LoginPage from 'pages/login';
+import NotFound from '../components/not_found_page/index';
 
 
 const Routes = () => {
@@ -17,14 +19,18 @@ const Routes = () => {
         setToken(localStorage.getItem('token'))
     }, [token]);
 
+
+
     return (
         <>
             <Switch>
+
                 {/* logged routes */}
                 {/* <LoggedRoutes exact path="/" component={Homepage} /> */}
                 {/* <LoggedRoutes exact path="/login" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/> */}
                 <LoggedRoutes exact path="/" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/home" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
+                <LoggedRoutes exact path="/profile" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/transaction" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/transaction/:type" component={localStorage.getItem('token') === 'customer' ? TypeTransaction : Agent}/>
                 {/* logged routes */}
@@ -33,6 +39,11 @@ const Routes = () => {
                 <GuestRoutes exact path="/login" component={LoginPage} />
 
                 {/* guest routes */}
+                <Route component={NotFound}/>
+            {/* <Route path="/notfound">
+                <NotFound/>
+            </Route> */}
+
             </Switch>
         </>
     )

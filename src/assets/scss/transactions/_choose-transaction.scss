@@ -15,6 +15,9 @@
     max-width: 400px;
     width: 100%;
     flex-direction: column;
+    a {
+        width: 100%;
+    }
 }
 .transaksi-pilih-content {
     // padding-top: 50px;
@@ -91,7 +94,8 @@
                 border-style: none;
                 background-color: #749bc3;
                 color: #fff;
-                width: 200px;
+                // width: 200px;
+                width: 100%;
                 text-align: center;
                 border-radius: 30px;
                 padding-left: 10px;
@@ -100,7 +104,7 @@
                 padding-bottom: 5px;
                 margin-bottom: 10px;
                 @media (max-width: 1200px) {
-                    width: 80%;
+                    width: 100%;
                 }
             }
         }
