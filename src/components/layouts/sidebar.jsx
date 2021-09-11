@@ -28,7 +28,7 @@ function Sidebar(props) {
                   className={`iconBri position-absolute radiusBottomRight ${
                     loc.pathname === "/home" ? `d-block` : `d-none`
                   }`}
-                  style={{ background: "#E5E5E5", height: "200px" }}
+                  style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconBri ${
@@ -49,7 +49,7 @@ function Sidebar(props) {
                   className={`iconBri position-absolute radiusBottomRightMini ${
                     activeTab === "transaction" ? `d-block` : `d-none`
                   }`}
-                  style={{ background: "#E5E5E5", height: "200px" }}
+                  style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconMenus ${
@@ -113,7 +113,7 @@ function Sidebar(props) {
                   className={`iconBri position-absolute radiusBottomRight ${
                     loc.pathname === "/home" ? `d-block` : `d-none`
                   }`}
-                  style={{ background: "#E5E5E5", height: "200px" }}
+                  style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconBri ${
@@ -134,7 +134,7 @@ function Sidebar(props) {
                   className={`iconBri position-absolute radiusBottomRightMini ${
                     loc.pathname === "/profile" ? `d-block` : `d-none`
                   }`}
-                  style={{ background: "#E5E5E5", height: "200px" }}
+                  style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconMenus ${
