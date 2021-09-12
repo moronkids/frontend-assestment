@@ -1,37 +1,77 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router';
+ import { useQuery } from 'react-query'
+
+
+
+
 import { auth } from 'dummies/auth/auth'
+import { apiLogin } from 'api/auth';
+import http from 'helper/http';
+
+
 function Forms() {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+      const [email, setEmail] = useState(null);
+    const [pass, setPass] = useState(null);
+    const {isLoading, isError, data, error, refetch} = useQuery('login', async (e) =>
+    {
+         await apiLogin({
+            username : email,
+            password: pass
+        })
+    }, {
+        refetchInterval: false
+    }
+    // {
+    //     const datax = await apiLogin({
+    //         username : email,
+    //         password: pass
+    //     })
+    //     console.log(datax,"sd")
+    // }
+    )
+    // const data = useQuery('login', apiLogin())
+
+//    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+//    if (!response.ok) {
+//      throw new Error('Network response was not ok')
+//    }
+//    return response.json()
+//  })
+
+
+
+
     const submitLogin = () => {
         const agent = auth().agent/*'agent@rakamin.com'*/
         const customer = auth().customer /*'customer@rakamin.com'*/
         const dummyPass = auth().pass/*'root'*/
-        if(pass === dummyPass) {
-            console.log(email === agent, email === customer)
-            if(email === agent){
-                localStorage.setItem('token', 'agent');
-                return window.location.href = "/"
+        refetch();
 
-            }
-            else if(email === customer){
-                localStorage.setItem('token', 'customer');
-                 return window.location.href = "/"
-            }
-            else {
+        // if(pass === dummyPass) {
+        //     console.log(email === agent, email === customer)
+        //     if(email === agent){
+        //         localStorage.setItem('token', 'agent');
+        //         return window.location.href = "/"
 
-                alert('login error failed 1')
-            }
-        }
-        else {
-            console.log(agent, customer, auth)
-            alert('login error failed 2')
-        }
+        //     }
+        //     else if(email === customer){
+        //         localStorage.setItem('token', 'customer');
+        //          return window.location.href = "/"
+        //     }
+        //     else {
+
+        //         alert('login error failed 1')
+        //     }
+        // }
+        // else {
+        //     console.log(agent, customer, auth)
+        //     alert('login error failed 2')
+        // }
     }
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [email, pass])
+    // }, [email, pass])
     return (
         <div className="forms h-100">
             <div className="wrapLogin ">
