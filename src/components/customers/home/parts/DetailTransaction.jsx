@@ -101,7 +101,6 @@ function DetailTransaction() {
                   <p className="label-content">Jalan Sebelahnya, No.87 Bogor</p>
                 </div>
               </div>
-
               {/* Baris Kontent */}
               <div className="row">
                 <div className="col-lg-6 col-md-12 col-12">

@@ -70,7 +70,7 @@
                 font-weight: bold;
             }
         }
-        & a{
+        & a {
             color: rgb(31, 207, 69);
         }
         & td {
@@ -78,7 +78,7 @@
             padding-right: 30px;
             font-size: 13px;
             color: #888;
-        
+
             @media (max-width: 768px) {
                 font-size: 14px;
             }
@@ -142,49 +142,49 @@
 
     //section_3
 
-    h5{
+    h5 {
         color: #32344b;
     }
-    
+
     & .saldo_container {
         width: 100%;
-        
-       
-            @media (max-width: 768px){
-                width: 100%;
-                padding-bottom: 30px;
 
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;}
-   
+        @media (max-width: 768px) {
+            width: 100%;
+            padding-bottom: 30px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         & .saldo-min {
-        width: 100%;
-        height: 40px;
-        font-size: 16px;
-        padding-left: 36px;
-        margin-top: 20px;
-        border-radius: 6px;
-        border: 1px solid #0061ff;
-        color: #65c466;
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+            padding-left: 36px;
+            margin-top: 20px;
+            border-radius: 6px;
+            border: 1px solid #0061ff;
+            color: #65c466;
 
-                    @media (max-width: 768px){
+            @media (max-width: 768px) {
+                width: 100%;
+                height: 40px;
+                font-size: 20px;
+                padding-left: 36px;
+                margin-top: 20px;
+                border-radius: 6px;
+                border: 1px solid #0061ff;
+                color: #65c466;
+
+                @media (max-width: 768px) {
                     width: 100%;
-                    height: 40px;
-                    font-size: 20px;
-                    padding-left: 36px;
-                    margin-top: 20px;
-                    border-radius: 6px;
-                    border: 1px solid #0061ff;
-                    color: #65c466;
-
-                        @media (max-width: 768px) {
-                        width: 100%;
-                        padding-left: 20px;
-                        margin-right: 25px;
-                        font-size: 14px;
-                    }
-                }   
+                    padding-left: 20px;
+                    margin-right: 25px;
+                    font-size: 14px;
+                }
+            }
         }
 
         & .btn-simpan {
@@ -199,6 +199,11 @@
             cursor: pointer;
             background-color: #65c466;
             color: white;
+            //Responsive for Mobile
+            @media (max-width: 425px) {
+                padding-left: 20px;
+                margin-right: 25px;
+            }
         }
     }
 }

@@ -27,7 +27,6 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
     async (response) => {
-        // alert('masuk')
         return await response;
     },
     (error) => {
@@ -49,8 +48,6 @@ http.interceptors.response.use(
                 return Promise.reject({ message, raw: data });
             }
         } else if (error.request) {
-            // console.log(error, "sdsd");
-
             return Promise.reject({
                 message: 'There is problem connecting to server. Please check your connection!',
             });
