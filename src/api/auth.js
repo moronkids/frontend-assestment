@@ -1,11 +1,8 @@
-
-// import { api_non_logged } from 'helper/api';
 import { http, url } from 'helper/http';
 
 export const apiLogin = async (iData) => {
     // const datas = await http.get('https://jsonplaceholder.typicode.com/todos/1');
     const datas = await http.post(`${url}/login/`, iData);
-    // alert(iData);
     console.log(">>", iData.password )
     if(iData.password === null || iData.email === null) {
         console.log("<<",iData)
@@ -27,5 +24,4 @@ export const apiLogin = async (iData) => {
         return false
     }
     return datas
-    return datas;
 }

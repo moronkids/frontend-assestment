@@ -3,10 +3,13 @@
 //         customer : 'customer@rakamin.com',
 //         pass : 'root'
 //     }];
+
+// dummy authentication login page
 export const auth = () => {
         return {
             agent: 'agent@rakamin.com',
-        customer: 'customer@rakamin.com',
-        pass: 'root'
+            customer: 'customer@rakamin.com',
+            pass: 'root'
         }
     }
+
