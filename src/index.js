@@ -4,11 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Hooks from 'providers';
+import { QueryClient, QueryClientProvider } from 'react-query';
+ const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
     <Hooks>
+      <QueryClientProvider client={queryClient}>
     <App />
+    </QueryClientProvider>
     </Hooks>
   </React.StrictMode>,
   document.getElementById('root')

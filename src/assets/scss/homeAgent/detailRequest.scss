@@ -26,8 +26,7 @@
 
     h2 {
         font-family: "Roboto", sans-serif;
-        font-size: 24px;
-        font-weight: bold;
+        font-size: 20px;
         padding-bottom: 10px;
         color: #014a94;
     }
@@ -40,7 +39,7 @@
         // min-height: 616px;
         // height: fit-content;
         background-color: #fff;
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 30px;
         height: 100%;
         // width: 100%;
@@ -96,6 +95,7 @@
             margin-top: 20px;
 
             button {
+                width: 120px;
                 float: right;
                 border-style: none;
                 color: #fff;
@@ -104,10 +104,13 @@
                 padding-bottom: 5px;
                 padding-left: 10px;
                 padding-right: 10px;
-                border-radius: 10px;
+                border-radius: 5px;
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-size: 13px;
+            }
+            .discard {
+                background-color: #45c55a;
             }
         }
     }

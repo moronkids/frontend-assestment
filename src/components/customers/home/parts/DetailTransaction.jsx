@@ -71,7 +71,6 @@ function DetailTransaction() {
                                     <p className="label-content status">Agen dalam perjalanan</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
