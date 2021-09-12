@@ -63,7 +63,7 @@ function DetailTransaction() {
                 </div>
               </div>
 
-              <hr className="garis-pertama" />
+              <hr />
               <div className="row">
                 <div className="col-lg-6 col-md-12 col-12">
                   <p className="label-judul">Nominal Transaksi</p>
@@ -74,7 +74,7 @@ function DetailTransaction() {
                   </p>
                 </div>
               </div>
-              <hr className="garis-kedua" />
+              <hr />
 
               {/* Baris Kontent */}
               <div className="row">
