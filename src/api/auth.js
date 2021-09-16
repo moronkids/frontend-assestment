@@ -4,11 +4,11 @@ export const apiLogin = async (iData) => {
     // const datas = await http.get('https://jsonplaceholder.typicode.com/todos/1');
     const datas = await http.post(`${url}/login/`, iData);
     console.log(">>", iData.password )
-    if(iData.password === null || iData.email === null) {
-        console.log("<<",iData)
-        return false
-    }
-    if (datas.data.status === 200) {
+    // if(iData.password === null || iData.email === null) {
+    //     console.log("<<",iData)
+    //     return false
+    // }
+    if (datas.data.status === 202) {
         if(iData.username === 'customer@rakamin.com') {
 
             localStorage.setItem('token', 'customer')
