@@ -7,7 +7,7 @@ import Section3 from "./parts/section_3";
 
 function Index() {
   const { isLoading, isError, data, error, refetch } = useQuery(
-    "login",
+    "agentProfile",
     async (e) => await agentProfile(),
     {
       refetchInterval: false,

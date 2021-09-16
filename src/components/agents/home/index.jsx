@@ -1,14 +1,20 @@
-import React from 'react'
-import NoRequest from 'components/agents/home/part/noRequest'
-import DetailRequest from 'components/agents/home/part/detailRequest'
+import React from "react";
+import NoRequest from "components/agents/home/part/noRequest";
+import DetailRequest from "components/agents/home/part/detailRequest";
+import { useQuery } from "react-query";
+import { getTrxFromAgent } from "api/agent";
 
 function Home() {
-    return (
-        //   <noRequest />
-        <>
-            <DetailRequest />
-        </>
-    )
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    "getTrxFromAgent",
+    async (e) => getTrxFromAgent()
+  );
+  return (
+    //   <noRequest />
+    <>
+      <DetailRequest data={data} />
+    </>
+  );
 }
 
 export default Home;

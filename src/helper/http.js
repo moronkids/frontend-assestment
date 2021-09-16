@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = 'https://c30f37b8-aa2d-495c-adc7-8c568a60411f.mock.pstmn.io';
+export const url = 'https://609359c1-c6e6-40da-9614-0349cabfe75f.mock.pstmn.io';
 // export const url = 'https://eed6e6df-5955-4fdc-905e-aa3a1540eb69.mock.pstmn.io';
 
 const TOKEN = localStorage.getItem('token');
@@ -8,6 +8,7 @@ export const http = axios.create({
     timeout: 60000,
     withCredentials: false,
     headers: {
+        'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IlJ1ZGkgR3VtZWxhciIsInJvbGUiOiJjdXN0b21lciIsInNpZCI6IldVaU9pSlNkV1JwSUVkMWJXVnNZWElpTENKeVpXWnlaWE5vWCIsImV4cCI6MTQ3Njg5MTA5MiwiaWF0IjoxNDc1ODc0NDU3fQ.LhwN8Kk0XeuUK4x_916WWJF9MG1Fg49-ITabzOgFAfo'
         // "Content-Type": "application/json",
         // 'Accept': 'application/json',
         // 'Access-Control-Allow-Origin': '*',
