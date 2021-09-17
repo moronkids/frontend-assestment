@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const url = 'https://609359c1-c6e6-40da-9614-0349cabfe75f.mock.pstmn.io';
+export const url = "https://4e94f400-36b3-4b9c-a642-7d61051c824f.mock.pstmn.io";
 // export const url = 'https://eed6e6df-5955-4fdc-905e-aa3a1540eb69.mock.pstmn.io';
 
 const TOKEN = localStorage.getItem('token');

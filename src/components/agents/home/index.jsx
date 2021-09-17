@@ -7,7 +7,8 @@ import { getTrxFromAgent } from "api/agent";
 function Home() {
   const { isLoading, isError, data, error, refetch } = useQuery(
     "getTrxFromAgent",
-    async (e) => getTrxFromAgent()
+    async (e) => getTrxFromAgent(),
+    {}
   );
   return (
     //   <noRequest />
