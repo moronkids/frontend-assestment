@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import WaIcon from "assets/img/icons/WaIcon.svg";
 import { transactionCustomer } from "dummies/transaction/transactionCustomer";
+import { Hooks } from "providers";
 
 let transaksi = null;
 transactionCustomer().data.forEach(function (object, value) {
@@ -36,17 +37,55 @@ function handleTextButton(status) {
   if (status === 3) {
     return "Beri Rating";
   } else if (status === 2) {
-    return "Dibatalkan";
+    return "Hapus";
   } else {
     return "Batalkan";
   }
 }
 
 function DetailTransaction({ data }) {
+  const {
+    details,
+    setDetails,
+    setId,
+    setConfirmation,
+    setAction,
+    confirmation,
+    popUpRate,
+    setPopUpRate,
+  } = useContext(Hooks);
+  // const [custStatus, setCustState] = useState("");
+  // const LoopStatus = (stat) => {
+  //   switch (stat) {
+  //     case 0:
+  //       setCustState("Menunggu Konfirmasi Agen");
+  //       break;
+  //     case 1:
+  //       setCustState("Agen Dalam Perjalanan");
+  //       break;
+  //     case 2:
+  //       setCustState("Dibatalkan");
+  //       break;
+  //     case 3:
+  //       setCustState("Selesai");
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  // };
+  const rate = async () => {
+    alert("tes");
+    await setPopUpRate(!popUpRate);
+    await setDetails(!details);
+  };
+  useEffect(() => {
+    // console.log(data, ">>");
+  }, [popUpRate, details]);
   return (
     <>
       <section className="customer-container">
-        {data?.data.map((val) => {
+        {data?.data.map((val, i) => {
           return (
             <div className="customer-content pb-5">
               <h2>Transaksi Saat Ini</h2>
@@ -101,7 +140,7 @@ function DetailTransaction({ data }) {
                     <div className="col-lg-6 col-md-12 col-12">
                       <p className="label-judul">Alamat Agen</p>
                       <p className="label-content">
-                        {val.agen.alamat_cust_lengkap}
+                        {val.agen.alamat_agen_lengkap}
                       </p>
                     </div>
                   </div>
@@ -123,7 +162,7 @@ function DetailTransaction({ data }) {
                     <div className="col-lg-6 col-md-12 col-12">
                       <p className="label-judul">Status</p>
                       <p className="label-content status">
-                        {checkStatusAgen(transaksi.status)}
+                        {checkStatusAgen(val.status)}
                       </p>
                     </div>
                   </div>
@@ -132,9 +171,17 @@ function DetailTransaction({ data }) {
                   <div className="row">
                     <div className="col-lg-12 col-12">
                       <button
+                        onClick={(e) => {
+                          val.status === 3
+                            ? rate()
+                            : setConfirmation(!confirmation);
+                          setDetails(false);
+                          setAction(val.status === 2 ? 3 : val.status);
+                        }}
                         className={handleButtonClassName(transaksi.status)}
                       >
-                        {handleTextButton(transaksi.status)}
+                        {handleTextButton(val.status)}
+                        {/* {checkStatusAgen(val.status)} */}
                       </button>
                     </div>
                   </div>

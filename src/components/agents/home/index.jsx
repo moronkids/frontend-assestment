@@ -6,8 +6,9 @@ import { getTrxFromAgent } from "api/agent";
 
 function Home() {
   const { isLoading, isError, data, error, refetch } = useQuery(
-    "getTrxFromAgent",
-    async (e) => getTrxFromAgent(),
+    // method get -> useQuery
+    "getTrxFromAgent", // ini namanya queries
+    async (e) => getTrxFromAgent(), // untuk fetch data ke backend
     {}
   );
 

@@ -12,6 +12,7 @@ function Home() {
   console.log(">>", data);
   return (
     //<NoTransaction />
+
     <DetailTransaction data={data} />
   );
 }
