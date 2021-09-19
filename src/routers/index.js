@@ -20,6 +20,7 @@ const Routes = () => {
     return (
         <>
             <Switch>
+
                 {/* logged routes */}
                 <LoggedRoutes exact path="/" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>
                 <LoggedRoutes exact path="/home" component={localStorage.getItem('token') === 'customer' ? Customer : Agent}/>

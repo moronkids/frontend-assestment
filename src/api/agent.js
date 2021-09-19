@@ -12,3 +12,18 @@ export const getTrxFromAgent = async (iData) => {
     console.log('>>1', datas)
     return datas.data
 }
+
+export const postDeclineTrxAgent = async (iData) => {
+    // const datas = await http.get('https://jsonplaceholder.typicode.com/todos/1');
+    const datas = await http.get(`${url}/transaksi/batal`);
+    console.log('>>1', datas)
+    return datas.data
+}
+
+export const postApproveTrxAgent = async (iData) => {
+    // const datas = await http.get('https://jsonplaceholder.typicode.com/todos/1');
+    const datas = await http.post(`${url}/transaksi/konfirmasi`, iData);
+    console.log('>>1', datas)
+    return datas.data
+}
+

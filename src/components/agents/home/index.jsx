@@ -10,10 +10,11 @@ function Home() {
     async (e) => getTrxFromAgent(),
     {}
   );
+
   return (
     //   <noRequest />
     <>
-      <DetailRequest data={data} />
+      <DetailRequest data={data} isLoading={isLoading} />
     </>
   );
 }
