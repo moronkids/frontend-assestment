@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import WaIcon from "assets/img/icons/WaIcon.svg";
 import { transactionCustomer } from "dummies/transaction/transactionCustomer";
+import { Hooks } from "providers";
 
 let transaksi = null;
 transactionCustomer().data.forEach(function (object, value) {
@@ -36,105 +37,159 @@ function handleTextButton(status) {
   if (status === 3) {
     return "Beri Rating";
   } else if (status === 2) {
-    return "Dibatalkan";
+    return "Hapus";
   } else {
     return "Batalkan";
   }
 }
 
-function DetailTransaction() {
+function DetailTransaction({ data }) {
+  const {
+    details,
+    setDetails,
+    setId,
+    setConfirmation,
+    setAction,
+    confirmation,
+    popUpRate,
+    setPopUpRate,
+  } = useContext(Hooks);
+  // const [custStatus, setCustState] = useState("");
+  // const LoopStatus = (stat) => {
+  //   switch (stat) {
+  //     case 0:
+  //       setCustState("Menunggu Konfirmasi Agen");
+  //       break;
+  //     case 1:
+  //       setCustState("Agen Dalam Perjalanan");
+  //       break;
+  //     case 2:
+  //       setCustState("Dibatalkan");
+  //       break;
+  //     case 3:
+  //       setCustState("Selesai");
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  // };
+  const rate = async () => {
+    alert("tes");
+    await setPopUpRate(!popUpRate);
+    await setDetails(!details);
+  };
+  useEffect(() => {
+    // console.log(data, ">>");
+  }, [popUpRate, details]);
   return (
     <>
       <section className="customer-container">
-        <div className="customer-content">
-          <h2>Transaksi Saat Ini</h2>
+        {data?.data.map((val, i) => {
+          return (
+            <div className="customer-content pb-5">
+              <h2>Transaksi Saat Ini</h2>
 
-          <div className="card myCard">
-            <div className="card-body my-card-body">
-              {/* Baris Kontent */}
-              <div className="row">
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Waktu Request</p>
-                  <p className="label-content">19/08/2021, 13:20 WIB</p>
-                </div>
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Jenis Transaksi</p>
-                  <p className="label-content">{transaksi.jenis_transaksi}</p>
-                </div>
-              </div>
-
-              <hr />
-              <div className="row">
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Nominal Transaksi</p>
-                </div>
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-nominal-transaksi">
-                    {transaksi.nominal_transaksi_idr}
-                  </p>
-                </div>
-              </div>
-              <hr />
-
-              {/* Baris Kontent */}
-              <div className="row">
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Nama Customer</p>
-                  <p className="label-content">Radi Marandika</p>
-                </div>
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Alamat Anda</p>
-                  <p className="label-content">
-                    {transaksi.alamat_cust_lengkap}
-                  </p>
-                </div>
-              </div>
-
-              {/* Baris Kontent */}
-              <div className="row">
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Agent BRILink</p>
-                  <p className="label-content">Agus Cipto Sutejo</p>
-                </div>
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Alamat Agen</p>
-                  <p className="label-content">Jalan Sebelahnya, No.87 Bogor</p>
-                </div>
-              </div>
-              {/* Baris Kontent */}
-              <div className="row">
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Hubungi Agen</p>
-                  <div className="wrap-konten">
-                    <p className="label-icon-wa">
-                      <img src={WaIcon} alt="icon-wa" />
-                    </p>
-                    <p className="label-nomor">
-                      <a href="#" className="link-nomor">
-                        0812 2243 1201
-                      </a>
-                    </p>
+              <div className="card myCard">
+                <div className="card-body my-card-body">
+                  {/* Baris Kontent */}
+                  <div className="row">
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Waktu Request</p>
+                      <p className="label-content">{val.created_at}</p>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Jenis Transaksi</p>
+                      <p className="label-content">{val.jenis_transaksi}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-6 col-md-12 col-12">
-                  <p className="label-judul">Status</p>
-                  <p className="label-content status">
-                    {checkStatusAgen(transaksi.status)}
-                  </p>
-                </div>
-              </div>
 
-              {/* Baris Content */}
-              <div className="row">
-                <div className="col-lg-12 col-12">
-                  <button className={handleButtonClassName(transaksi.status)}>
-                    {handleTextButton(transaksi.status)}
-                  </button>
+                  <hr className="garis-pertama" />
+                  <div className="row">
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Nominal Transaksi</p>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-nominal-transaksi">
+                        {val.nominal_transaksi_idr}
+                      </p>
+                    </div>
+                  </div>
+                  <hr className="garis-kedua" />
+
+                  {/* Baris Kontent */}
+                  <div className="row">
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Nama Customer</p>
+                      <p className="label-content"> {val.customer.nama}</p>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Alamat Anda</p>
+                      <p className="label-content">
+                        {val.customer.alamat_cust_lengkap}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Baris Kontent */}
+                  <div className="row">
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Agent BRILink</p>
+                      <p className="label-content"> {val.agen.nama_outlet}</p>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Alamat Agen</p>
+                      <p className="label-content">
+                        {val.agen.alamat_agen_lengkap}
+                      </p>
+                    </div>
+                  </div>
+                  {/* Baris Kontent */}
+                  <div className="row">
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Hubungi Agen</p>
+                      <div className="wrap-konten">
+                        <p className="label-icon-wa">
+                          <img src={WaIcon} alt="icon-wa" />
+                        </p>
+                        <p className="label-nomor">
+                          <a href="#" className="link-nomor">
+                            {val.agen.no_telp}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-12 col-12">
+                      <p className="label-judul">Status</p>
+                      <p className="label-content status">
+                        {checkStatusAgen(val.status)}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Baris Content */}
+                  <div className="row">
+                    <div className="col-lg-12 col-12">
+                      <button
+                        onClick={(e) => {
+                          val.status === 3
+                            ? rate()
+                            : setConfirmation(!confirmation);
+                          setDetails(false);
+                          setAction(val.status === 2 ? 3 : val.status);
+                        }}
+                        className={handleButtonClassName(transaksi.status)}
+                      >
+                        {handleTextButton(val.status)}
+                        {/* {checkStatusAgen(val.status)} */}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </section>
     </>
   );

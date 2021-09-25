@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-// import { Redirect } from "react-router";
-import { useQuery } from "react-query";
-
-// import { auth } from "dummies/auth/auth";
+import { useMutation, useQuery } from "react-query";
 import { apiLogin } from "api/auth";
-// import http from "helper/http";
 
 function Forms() {
   const [email, setEmail] = useState(null);
   const [pass, setPass] = useState(null);
-  const { isLoading, isError, data, error, refetch } = useQuery(
+  const { isLoading, isError, data, error, mutate } = useMutation(
     "login",
     async (e) => {
       await apiLogin({
@@ -45,7 +41,7 @@ function Forms() {
           </div>
 
           <div className="wrapBtn d-flex justify-content-center align-items-center">
-            <div className="btnLogin" onClick={(e) => refetch(e)}>
+            <div className="btnLogin" onClick={(e) => mutate(e)}>
               LOGIN
             </div>
           </div>

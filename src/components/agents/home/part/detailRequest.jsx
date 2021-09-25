@@ -1,116 +1,121 @@
-
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Modal, ModalFooter, ModalHeader, ModalBody} from "reactstrap";
-import WaIcon from "assets/img/icons/WaIcon.svg";
-
-function DetailRequest() {
-
-  //function Modal(props) {
-
-  const [modal, setModal] = React.useState(false);
-  
-  const toggle = () => setModal(!modal);
-  
-  return (
-    <React.Fragment>
-      <section className="detail-container">
-                <div className="detail-content">
-                    <h2>Transaksi Saat Ini</h2>
-
-                    <div className="detail-card">
-                        
-                            {/* */}
-                            <div className="row">
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-left">Waktu Request</p>
-                                    <p className="label-content">20/08/2021, 13:20 WIB</p>
-                                </div>
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-right">Jenis Transaksi</p>
-                                    <p className="label-content">Setoran Tunai</p>
-                                </div>
-                            </div>
-
-                            <hr />
-                            <div className="row">
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-left label-nominal">Nominal Transaksi</p>
-                                </div>
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-right nominal-right">Rp. 10.000.000</p>
-                                </div>
-                            </div>
-                            <hr />
-
-                            {/* Data Customer */}
-                            <div className="row">
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-left">Nama Customer</p>
-                                    <p className="label-content">Supinah</p>
-                                </div>
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-right">Alamat Customer</p>
-                                    <p className="label-content">Jalan Pajajaran No.21 Bogor</p>
-                                </div>
-                            </div>
-
-                            {/* Kontak Customer */}
-                            <div className="row">
-                                <div className="col-lg-6 col-md-12 col-12">
-                                    <p className="label-left">Hubungi Customer</p>
-                                    <div className="wrap-konten">
-                                        <p className="label-icon-wa"><img src={WaIcon} alt="icon-wa" /></p>
-                                        <p className="label-content"><a href="#" className="link-wa">0812 2243 1201</a></p>
-                                    </div>
-                                </div>
-                                
-                            <div className="col-lg-6 col-md-12 col-12">
-                                <p className="label-right space-status">Status</p>
-                                <p className="label-content status-agen">
-                                {
-                                    true ? (<p>Menunggu konfirmasi anda</p>) : <p>Agen dalam perjalanan</p>
-                                }
-
-                                </p>
-                            </div>        
-                          </div>
-
-                            {/* button tolak */}
-
-                        <div className="d-flex" style={{ columnGap: '15px', justifyContent: 'flex-end' }}>
-                            <div>
-                                <button className="btn-action-detail button_cancel" onClick={toggle}>Tolak</button>
-                            </div>
-
-                            {/* button terima */}
-                                  <div>
-                                    <button className="btn-action-detail button_accept" onClick={toggle}>
-                                      Terima</button>
-
-                                    <Modal isOpen={modal} toggle={toggle}>
-                                       <ModalHeader toggle={toggle}>Konfirmasi</ModalHeader>
-                                    
-                                    <ModalBody>
-                                      Apakah anda ingin melanjutkan transaksi customer?
-                                    </ModalBody>
-                                    <ModalFooter>
-                                        <Button color="primary" onClick={toggle}>Terima Transaksi</Button>
-                                    </ModalFooter>
-                                    
-                                    </Modal>
-                                  </div> 
-                            </div>
-                          </div>
-                        </div>
-            </section>
-      </React.Fragment>
-  
-                                
-    );
+import React, { useContext, useState } from "react";
+import ReactDOM from "react-dom";
+import MUIDataTable from "mui-datatables";
+import superSearch from "@codewell/super-search";
+import { Hooks } from "providers";
+import Popup from "components/agents/home/part/popup";
+import { debounceSearchRender } from "helper/debouncer";
+const DetailRequest = ({ data, isLoading }) => {
+  // console.log(">>", data);
+  const { details, setDetails, setId } = useContext(Hooks);
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    {
+      field: "NamaAgen",
+      headerName: "Nama Agen",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      field: "NomorTelp",
+      headerName: "Nomor Telp",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      field: "Alamat",
+      headerName: "Alamat",
+      type: "number",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "Action",
+      headerName: "Action",
+      options: {
+        sort: false,
+        filter: false,
+        searchable: false,
+      },
+    },
+  ];
+  const datas = [];
+  const rowx = async () => {
+    data?.data?.map((val, i) => {
+      return datas.push({
+        id: i + 1,
+        NamaAgen: val.customer.nama,
+        NomorTelp: val.customer.no_telp,
+        Alamat: val.customer.alamat_cust_lengkap,
+        Action: (
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => {
+              setDetails(!details);
+              setId(i);
+            }}
+          >
+            Details
+          </button>
+        ),
+      });
+    });
+  };
+  if (data !== undefined) {
+    rowx();
   }
-
-
-
-
-export default DetailRequest
+  const options = {
+    filterType: "dropdown",
+    customSearchRender: debounceSearchRender(500),
+    responsive: "stacked",
+    selectableRows: false, // <===== will turn off checkboxes in rows
+  };
+  return (
+    <>
+      <section className="detail-container d-block m-auto">
+        <Popup data={data} />
+        <div
+          className="wrap-tabel"
+          style={{
+            height: "100%",
+            width: "80%",
+            background: "#FFFFFF",
+            marginTop: "40px",
+            margin: "0 auto",
+          }}
+        >
+          <MUIDataTable
+            title={"Transaksi Saat ini"}
+            data={datas.map((val) => {
+              return [
+                val.id,
+                val.NamaAgen,
+                val.NomorTelp,
+                val.Alamat,
+                val.Action,
+              ];
+            })}
+            columns={columns.map((val) => {
+              return val.headerName;
+            })}
+            options={options}
+          />
+        </div>
+      </section>
+    </>
+  );
+};
+export default DetailRequest;
