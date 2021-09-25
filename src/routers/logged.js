@@ -100,15 +100,16 @@ const Logged = ({ component: Component, ...rest }) => {
       render={(props) => {
         return (
           <>
-            <Popup />
+
             <div
               onClick={() => {
-                setDetails(!details);
+                setDetails(false);
                 setPopUpRate(false);
-                setConfirmation(false)
+                setConfirmation(false);
+
               }}
               className={`overlay position-fixed d-none ${
-                details && "d-block"
+                (details || popUpRate) && "d-block"
               }`}
               style={{
                 backgroundColor: "#000000",
@@ -159,6 +160,7 @@ const Logged = ({ component: Component, ...rest }) => {
             </Dialog>
 
             <Wrapper>
+              <Popup />
               <Component {...props} />
             </Wrapper>
           </>
