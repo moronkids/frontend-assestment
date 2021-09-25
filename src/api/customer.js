@@ -1,5 +1,7 @@
 import { http, url } from 'helper/http';
-const urlExpress = 'http://localhost:5000' // backend localku pake expree
+// const urlExpress = 'http://localhost:5000' // backend localku pake expree
+const urlExpress = 'https://rakamin-expressjs.herokuapp.com'
+ // backend localku pake expree
 
 export const getTrxFromCustomer = async (iData) => {
     const datas = await http.get(`${urlExpress}/api/v1/customer`);
