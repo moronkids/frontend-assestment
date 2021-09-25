@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import WaIcon from "assets/img/icons/WaIcon.svg";
 import { transactionCustomer } from "dummies/transaction/transactionCustomer";
+import MUIDataTable from "mui-datatables";
+import superSearch from "@codewell/super-search";
 import { Hooks } from "providers";
+import Popup from "components/customers/home/parts/popup";
+import { debounceSearchRender } from "helper/debouncer";
 
 let transaksi = null;
 transactionCustomer().data.forEach(function (object, value) {
@@ -54,28 +58,83 @@ function DetailTransaction({ data }) {
     popUpRate,
     setPopUpRate,
   } = useContext(Hooks);
-  // const [custStatus, setCustState] = useState("");
-  // const LoopStatus = (stat) => {
-  //   switch (stat) {
-  //     case 0:
-  //       setCustState("Menunggu Konfirmasi Agen");
-  //       break;
-  //     case 1:
-  //       setCustState("Agen Dalam Perjalanan");
-  //       break;
-  //     case 2:
-  //       setCustState("Dibatalkan");
-  //       break;
-  //     case 3:
-  //       setCustState("Selesai");
-  //       break;
 
-  //     default:
-  //       break;
-  //   }
-  // };
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    {
+      field: "NamaAgen",
+      headerName: "Nama Agen",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      field: "NomorTelp",
+      headerName: "Nomor Telp",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      field: "Alamat",
+      headerName: "Alamat",
+      type: "number",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "Action",
+      headerName: "Action",
+      options: {
+        sort: false,
+        filter: false,
+        searchable: false,
+      },
+    },
+  ];
+  const datas = [];
+  const rowx = async () => {
+    data?.data?.map((val, i) => {
+      return datas.push({
+        id: i + 1,
+        NamaAgen: val.customer.nama,
+        NomorTelp: val.customer.no_telp,
+        Alamat: val.customer.alamat_cust_lengkap,
+        Action: (
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => {
+              setDetails(!details);
+              setId(i);
+            }}
+          >
+            Details
+          </button>
+        ),
+      });
+    });
+  };
+  if (data !== undefined) {
+    rowx();
+  }
+  const options = {
+    filterType: "dropdown",
+    customSearchRender: debounceSearchRender(500),
+    responsive: "stacked",
+    selectableRows: false, // <===== will turn off checkboxes in rows
+  };
   const rate = async () => {
-    alert("tes");
     await setPopUpRate(!popUpRate);
     await setDetails(!details);
   };
@@ -84,112 +143,35 @@ function DetailTransaction({ data }) {
   }, [popUpRate, details]);
   return (
     <>
-      <section className="customer-container">
-        {data?.data.map((val, i) => {
-          return (
-            <div className="customer-content pb-5">
-              <h2>Transaksi Saat Ini</h2>
-
-              <div className="card myCard">
-                <div className="card-body my-card-body">
-                  {/* Baris Kontent */}
-                  <div className="row">
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Waktu Request</p>
-                      <p className="label-content">{val.created_at}</p>
-                    </div>
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Jenis Transaksi</p>
-                      <p className="label-content">{val.jenis_transaksi}</p>
-                    </div>
-                  </div>
-
-                  <hr className="garis-pertama" />
-                  <div className="row">
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Nominal Transaksi</p>
-                    </div>
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-nominal-transaksi">
-                        {val.nominal_transaksi_idr}
-                      </p>
-                    </div>
-                  </div>
-                  <hr className="garis-kedua" />
-
-                  {/* Baris Kontent */}
-                  <div className="row">
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Nama Customer</p>
-                      <p className="label-content"> {val.customer.nama}</p>
-                    </div>
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Alamat Anda</p>
-                      <p className="label-content">
-                        {val.customer.alamat_cust_lengkap}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Baris Kontent */}
-                  <div className="row">
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Agent BRILink</p>
-                      <p className="label-content"> {val.agen.nama_outlet}</p>
-                    </div>
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Alamat Agen</p>
-                      <p className="label-content">
-                        {val.agen.alamat_agen_lengkap}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Baris Kontent */}
-                  <div className="row">
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Hubungi Agen</p>
-                      <div className="wrap-konten">
-                        <p className="label-icon-wa">
-                          <img src={WaIcon} alt="icon-wa" />
-                        </p>
-                        <p className="label-nomor">
-                          <a href="#" className="link-nomor">
-                            {val.agen.no_telp}
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-md-12 col-12">
-                      <p className="label-judul">Status</p>
-                      <p className="label-content status">
-                        {checkStatusAgen(val.status)}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Baris Content */}
-                  <div className="row">
-                    <div className="col-lg-12 col-12">
-                      <button
-                        onClick={(e) => {
-                          val.status === 3
-                            ? rate()
-                            : setConfirmation(!confirmation);
-                          setDetails(false);
-                          setAction(val.status === 2 ? 3 : val.status);
-                        }}
-                        className={handleButtonClassName(transaksi.status)}
-                      >
-                        {handleTextButton(val.status)}
-                        {/* {checkStatusAgen(val.status)} */}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <section className="detail-container d-block m-auto">
+        <Popup data={data} />
+        <div
+          className="wrap-tabel"
+          style={{
+            height: "100%",
+            width: "80%",
+            background: "#FFFFFF",
+            marginTop: "40px",
+            margin: "0 auto",
+          }}
+        >
+          <MUIDataTable
+            title={"Transaksi Saat ini"}
+            data={datas.map((val) => {
+              return [
+                val.id,
+                val.NamaAgen,
+                val.NomorTelp,
+                val.Alamat,
+                val.Action,
+              ];
+            })}
+            columns={columns.map((val) => {
+              return val.headerName;
+            })}
+            options={options}
+          />
+        </div>
       </section>
     </>
   );

@@ -13,7 +13,6 @@ function Socket_() {
 
 
      const out = () => {
-        alert('dsr')
         socket.emit('imclient' , 'data')
     }
     useEffect( () => {
