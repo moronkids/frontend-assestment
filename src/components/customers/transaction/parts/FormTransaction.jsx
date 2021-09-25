@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-
+import Spinner from 'assets/img/spinner.svg'
 import { DataGrid } from '@material-ui/data-grid';
 import { useParams } from 'react-router-dom';
 const options = [
@@ -63,7 +63,9 @@ function FormTransaction() {
     const { type } = useParams()
     return (
         <React.Fragment>
-            {loading ? <div>loading to get your data...</div> : <div className="form__wrap">
+            {loading ?          <div className="w-100 h-100 d-flex justify-content-center align-items-center m-auto">
+      <img src={Spinner} alt="" width={150} height={150} srcset="" />
+      </div>: <div className="form__wrap">
                 <div className="form__title">
                     <h1>Jenis Transaksi</h1>
                     <div className="lblSetoran text-capitalize">

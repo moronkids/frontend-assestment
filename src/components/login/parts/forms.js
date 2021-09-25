@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { apiLogin } from "api/auth";
-
+import Loader from 'assets/img/loader.svg'
 function Forms() {
   const [email, setEmail] = useState(null);
   const [pass, setPass] = useState(null);
@@ -20,7 +20,7 @@ function Forms() {
 
   return (
     <div className="forms h-100">
-      <div className="wrapLogin ">
+      <div className="wrapLogin text-center">
         <div className="iconLogin d-flex m-auto" />
         <div className="formLogin">
           <div className="inputLogin">
@@ -41,9 +41,9 @@ function Forms() {
           </div>
 
           <div className="wrapBtn d-flex justify-content-center align-items-center">
-            <div className="btnLogin" onClick={(e) => mutate(e)}>
-              LOGIN
-            </div>
+            <button className="btnLogin" onClick={(e) => mutate(e)}>
+              {isLoading ? <><img src={Loader} width={50} height={25}  alt="" /></>: <>LOGIN</>}
+            </button>
           </div>
         </div>
       </div>

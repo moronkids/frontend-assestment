@@ -17,13 +17,7 @@ function Transaction() {
   return (
     <>
       <div className="d-block w-100">
-        <ChooseTransaction data={data} />
-        {/* {
-                    type === null ?
-                        () : (<div className="d-flex justify-content-center">
-                            <FormTransaction />
-                        </div>)
-                } */}
+        <ChooseTransaction data={data} isLoading={isLoading}/>
       </div>
     </>
   );
