@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-// import { Redirect } from "react-router";
 import { useMutation, useQuery } from "react-query";
-
-// import { auth } from "dummies/auth/auth";
 import { apiLogin } from "api/auth";
-// import http from "helper/http";
 
 function Forms() {
   const [email, setEmail] = useState(null);
