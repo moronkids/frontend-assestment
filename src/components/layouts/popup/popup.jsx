@@ -49,8 +49,8 @@ function Popup() {
           <div
             onClick={() => {
               mutate();
-              setPopUpRate(!popUpRate);
-              setDetails(!details);
+              setPopUpRate(false);
+              setDetails(false);
             }}
             className="popup-box__submit text-center m-auto d-flex justify-content-center align-items-center"
             style={{
