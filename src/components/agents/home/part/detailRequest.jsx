@@ -5,6 +5,7 @@ import superSearch from "@codewell/super-search";
 import { Hooks } from "providers";
 import Popup from "components/agents/home/part/popup";
 import { debounceSearchRender } from "helper/debouncer";
+import Spinner from 'assets/img/spinner.svg'
 const DetailRequest = ({ data, isLoading }) => {
   // console.log(">>", data);
   const { details, setDetails, setId } = useContext(Hooks);
@@ -87,7 +88,14 @@ const DetailRequest = ({ data, isLoading }) => {
     <>
       <section className="detail-container d-block m-auto">
         <Popup data={data} />
-        <div
+        {
+          isLoading ? <>
+          <div className="w-100 h-100 d-flex justify-content-center align-items-center m-auto">
+            {/* fech data */}
+            <img src={Spinner} alt="" width={150} height={150} srcset="" />
+          </div>
+          </> : (
+            <div
           className="wrap-tabel"
           style={{
             height: "100%",
@@ -97,6 +105,9 @@ const DetailRequest = ({ data, isLoading }) => {
             margin: "0 auto",
           }}
         >
+          {/* <div className="w-100 h-100 d-flex justify-content-center align-items-center m-auto">
+            <img src={Spinner} alt="" width={150} height={150} srcset="" />
+          </div> */}
           <MUIDataTable
             title={"Transaksi Saat ini"}
             data={datas.map((val) => {
@@ -114,6 +125,8 @@ const DetailRequest = ({ data, isLoading }) => {
             options={options}
           />
         </div>
+          )
+        }
       </section>
     </>
   );
