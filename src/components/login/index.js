@@ -8,7 +8,7 @@ function Index() {
         <div className="w-100 loginPage d-flex flex-column justify-content-between">
             <img src={BubbleTop} className="bb-top position-absolute" style={{top: '0', right: '0'}}/>
             <img src={BubbleBtm} className="bb-btm position-absolute" style={{bottom: '0', left: '0'}}/>
-            <Forms/>
+            <Forms email={''} pass={''} />
         </div>
     )
 }
