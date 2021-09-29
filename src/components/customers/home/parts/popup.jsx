@@ -80,14 +80,16 @@ function Popup({ data }) {
         }}
       >
         <div
-          className="detail-content position-fixed"
+          className="customer-container detail-content position-fixed"
           style={{ margin: "0 auto", zIndex: details && "149" }}
         >
           <div
-            className={`detail-card d-none ${details && "d-block"}`}
+            className={`customer-content detail-card d-none ${details && "d-block"}`}
             style={{}}
           >
-            {/* Baris Kontent */}
+            <div className="">
+              <div className="card-body my-card-body">
+                    {/* Baris Kontent */}
             <div className="row">
               <div className="col-lg-6 col-md-12 col-12">
                 <p className="label-judul">Waktu Request</p>
@@ -190,6 +192,9 @@ function Popup({ data }) {
                   {handleTextButton(data?.data?.[id]?.status)}
                   {/* {checkStatusAgen(data.status)} */}
                 </button>
+              </div>
+            </div>
+
               </div>
             </div>
           </div>
