@@ -61,7 +61,9 @@ const DetailRequest = ({ data, isLoading }) => {
         NomorTelp: val.customer.no_telp,
         Alamat: val.customer.alamat_cust_lengkap,
         Action: (
+          <>
           <button
+            data-testid={'btn-details'}
             type="button"
             className="btn btn-success"
             onClick={() => {
@@ -71,6 +73,7 @@ const DetailRequest = ({ data, isLoading }) => {
           >
             Details
           </button>
+          </>
         ),
       });
     });
@@ -97,6 +100,7 @@ const DetailRequest = ({ data, isLoading }) => {
           </> : (
             <div
           className="wrap-tabel"
+
           style={{
             height: "100%",
             width: "80%",
@@ -112,11 +116,11 @@ const DetailRequest = ({ data, isLoading }) => {
             title={"Transaksi Saat ini"}
             data={datas.map((val) => {
               return [
-                val.id,
-                val.NamaAgen,
-                val.NomorTelp,
-                val.Alamat,
-                val.Action,
+                // val.id,
+                // val.NamaAgen,
+                // val.NomorTelp,
+                // val.Alamat,
+                // val.Action,
               ];
             })}
             columns={columns.map((val) => {

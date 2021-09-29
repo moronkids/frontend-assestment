@@ -64,7 +64,6 @@ function Popup({ data }) {
     await setPopUpRate(true);
   };
   useEffect(() => {
-    // console.log(data, ">>");
   }, [popUpRate, details]);
   return (
     <>
