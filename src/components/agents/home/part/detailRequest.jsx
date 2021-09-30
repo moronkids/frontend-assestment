@@ -93,7 +93,10 @@ const DetailRequest = ({ data, isLoading }) => {
         <Popup data={data} />
         {isLoading ? (
           <>
-            <div className="w-100 h-100 d-flex justify-content-center align-items-center m-auto">
+            <div
+              data-qa-id="dashboard-agent"
+              className="w-100 h-100 d-flex justify-content-center align-items-center m-auto"
+            >
               {/* fech data */}
               <img src={Spinner} alt="" width={150} height={150} srcset="" />
             </div>

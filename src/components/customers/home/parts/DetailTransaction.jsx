@@ -112,6 +112,7 @@ function DetailTransaction({ data }) {
         Alamat: val.customer.alamat_cust_lengkap,
         Action: (
           <button
+            data-qa-id={i + `-details-team`}
             type="button"
             className="btn btn-success"
             onClick={() => {
