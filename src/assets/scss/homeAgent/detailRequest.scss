@@ -52,7 +52,13 @@
         //     width: 100%;
         //     height: fit-content;
         // }
-        .label {
+        .label-right {
+            font-size: 13px;
+            color: #888;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .label-left{
             font-size: 13px;
             color: #888;
             font-family: "Roboto", sans-serif;
@@ -66,33 +72,42 @@
             margin-top: -13px;
         }
 
-        .nominal-content {
+        .label-nominal {
             padding-top: 3px;
             padding-bottom: 3px;
+            font-size: 13px;
+            color: #888;
             font-family: "Roboto", sans-serif;
             font-weight: 400;
+        }
 
-            .nominal-right {
-                color: #65c466;
-                font-weight: 600;
-            }
+        .nominal-right {
+            font-size: 18px;
+            color: #65c466;
+            font-weight: 600;
         }
 
         hr {
             margin-top: -3px;
         }
 
-        .hubungi-wa {
-            a {
+        .link-wa {
+                font-size: 15px;
+                color:green;
                 margin-left: 8px;
                 text-decoration: underline;
             }
-        }
+        
 
         .status-agen {
             font-family: "Roboto", sans-serif;
             font-weight: 500;
             color: #014a94;
+        }
+
+        .space-status {
+            margin-top:10px; 
+            padding-top:10px;
         }
 
         .baris-button {
@@ -117,5 +132,8 @@
                 background-color: #45c55a;
             }
         }
+
     }
 }
+
+

@@ -2,8 +2,7 @@
 /* eslint-disable no-undef */
 import DetailRequest from "components/agents/home/part/detailRequest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { render, screen, waitForElementToBeRemoved } from "test/app-test-utils";
+//import { render, screen, waitForElementToBeRemoved } from "test/app-test-utils";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 import { Hooks } from "providers";
@@ -51,8 +50,8 @@ test("User click button details", async () => {
 //   const { getByTestId } = Wrapper();
 //   console.log(screen.getByTestId("btn-details"));
 
-screen.getByRole("img", { name: /logo\-wa/i });
-await waitForElementToBeRemoved(() => screen.getByText(/1000000/i));
+// screen.getByRole("img", { name: /logo\-wa/i });
+// await waitForElementToBeRemoved(() => screen.getByText(/1000000/i));
 
 //   await waitFor(() => {
 //     expect(screen.getByText(/0867861223271/i)).toBeInTheDocument()
