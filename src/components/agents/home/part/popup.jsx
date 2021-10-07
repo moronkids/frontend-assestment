@@ -10,20 +10,21 @@ function Popup({ data }) {
   console.log(data, "sds");
   const setStat_ = async (val) => {
     // alert(val?.data?.[id].status);
-    switch (val?.data?.[id]?.status) {
+    console.log("debug disini func", val);
+    switch (val) {
       case 0: //menunggu konfirmasi agen
         setStat("Menunggu Konfirmasi Agen");
         break;
 
-      case "1": //agen dalam perjalanan
+      case 1: //agen dalam perjalanan
         setStat("Agen dalam Perjalanan");
         break;
 
-      case "2": //dibatalkan
+      case 2: //dibatalkan
         setStat("Dibatalkan");
         break;
 
-      case "3": //selesai
+      case 3: //selesai
         setStat("Selesai");
         break;
 
@@ -31,9 +32,10 @@ function Popup({ data }) {
         break;
     }
   };
+  console.log("debug disini x", data, id);
   useEffect(() => {
-    setStat_(data);
-  }, [id]);
+    setStat_(data?.data?.[id]?.status);
+  }, [id, stat]);
   return (
     <>
       <div
@@ -66,9 +68,14 @@ function Popup({ data }) {
 
             <div className="row label-content">
               <div className="col-lg-6 label-left">
-                <p>{data?.data?.[id]?.created_at}</p>
+                {console.log("debug disini", data)}
+                <p>{data?.data?.[id]?.create_at}</p>
               </div>
               <div className="col-lg-6 label-right">
+                {console.log(
+                  "debug disini2",
+                  data?.data?.[id]?.jenis_transaksi
+                )}
                 <p>{data?.data?.[id]?.jenis_transaksi}</p>
               </div>
             </div>
@@ -98,7 +105,7 @@ function Popup({ data }) {
                 <p>{data?.data?.[id]?.customer.nama}</p>
               </div>
               <div className="col-lg-6 label-right">
-                <p>{data?.data?.[id]?.customer.alamat_cust_lengkap}</p>
+                <p>{data?.data?.[id]?.customer.alamat_lengkap}</p>
               </div>
             </div>
 

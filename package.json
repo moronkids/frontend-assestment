@@ -13,6 +13,7 @@
     "axios": "^0.21.4",
     "bootstrap": "^5.1.0",
     "env": "0.0.2",
+    "jwt-decode": "^3.1.2",
     "material-table": "^1.69.3",
     "material-ui-search-bar": "^1.0.0",
     "mui-datatables": "^3.7.8",

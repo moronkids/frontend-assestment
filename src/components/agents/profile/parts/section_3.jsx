@@ -8,7 +8,7 @@ function section_3({ data }) {
         <input
           className="saldo-min"
           type="text"
-          placeholder={`${data?.data.transaksi_maksimal}`}
+          placeholder={`${data?.data.maksimum_transaksi}`}
         />
         <button className="btn-simpan">Simpan</button>
       </div>
