@@ -11,7 +11,10 @@ export const getTrxFromCustomer = async (iData) => {
 };
 
 export const deleteTrx = async (iData) => {
-  const datas = await http.delete(`${url}/transaksi/delete`);
+  // alert(iData)
+  console.log(iData, "trxx")
+  const datas = await http.delete(`${url}/transaksi/delete`, {data : iData});
+  console.log(datas, "trxx")
   return datas.data;
 };
 export const postRating = async (iData) => {

@@ -101,7 +101,7 @@ const Logged = ({ component: Component, ...rest }) => {
       },
     }
   );
-
+  console.log(idTrx, 'transaksi')
   useEffect(() => {}, [details]);
   const token = localStorage.getItem("token");
   console.log(token, "sd");
@@ -115,6 +115,7 @@ const Logged = ({ component: Component, ...rest }) => {
 
   // }, [details]);
   const Actx = (action) => {
+    // alert(action)
     if (action == 0) {
       return "Kamu akan membatalkan transaksi";
     } else if (action == 1) {
