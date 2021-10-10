@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import MUIDataTable from "mui-datatables";
 import superSearch from "@codewell/super-search";
 import { Hooks } from "providers";
-import Popup from "components/agents/home/part/popup";
+import Popup from "components/agents/home/part/backup";
 import { debounceSearchRender } from "helper/debouncer";
 import Spinner from "assets/img/spinner.svg";
 const DetailRequest = ({ data, isLoading }) => {
