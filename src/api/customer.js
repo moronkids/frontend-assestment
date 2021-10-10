@@ -15,6 +15,6 @@ export const deleteTrx = async (iData) => {
   return datas.data;
 };
 export const postRating = async (iData) => {
-  const datas = await http.post(`${url}/transaksi/rating`);
+  const datas = await http.post(`${url}/transaksi/rating`, iData);
   return datas.data;
 };

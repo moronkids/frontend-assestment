@@ -57,6 +57,7 @@ function DetailTransaction({ data }) {
     confirmation,
     popUpRate,
     setPopUpRate,
+    setIdTrx,
   } = useContext(Hooks);
 
   const columns = [
@@ -109,7 +110,7 @@ function DetailTransaction({ data }) {
         id: i + 1,
         NamaAgen: val.customer.nama,
         NomorTelp: val.customer.no_telp,
-        Alamat: val.customer.alamat_cust_lengkap,
+        Alamat: val.customer.alamat_lengkap,
         Action: (
           <button
             data-qa-id={i + `-details-team`}
@@ -118,6 +119,7 @@ function DetailTransaction({ data }) {
             onClick={() => {
               setDetails(!details);
               setId(i);
+              setIdTrx(val.id);
             }}
           >
             Details

@@ -11,13 +11,18 @@ export const getTrxFromAgent = async (iData) => {
 };
 
 export const postDeclineTrxAgent = async (iData) => {
-  const datas = await http.post(`${url}/transaksi/batal`);
+  const datas = await http.post(`${url}/transaksi/batal`, iData);
   console.log(">>1", datas);
   return datas.data;
 };
 
 export const postApproveTrxAgent = async (iData) => {
   const datas = await http.post(`${url}/transaksi/konfirmasi`, iData);
+  console.log(">>1", datas);
+  return datas.data;
+};
+export const postFinishTrxAgent = async (iData) => {
+  const datas = await http.post(`${url}/transaksi/selesai`, iData);
   console.log(">>1", datas);
   return datas.data;
 };

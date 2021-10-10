@@ -8,7 +8,7 @@ import { debounceSearchRender } from "helper/debouncer";
 import Spinner from "assets/img/spinner.svg";
 const DetailRequest = ({ data, isLoading }) => {
   // console.log(">>", data);
-  const { details, setDetails, setId } = useContext(Hooks);
+  const { details, setDetails, setId, setIdTrx } = useContext(Hooks);
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
@@ -69,6 +69,7 @@ const DetailRequest = ({ data, isLoading }) => {
               onClick={() => {
                 setDetails(!details);
                 setId(i);
+                setIdTrx(val.id);
               }}
             >
               Details

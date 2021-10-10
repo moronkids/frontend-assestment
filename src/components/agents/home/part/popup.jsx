@@ -2,9 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import IconWa from "assets/img/icons/WaIcon.svg";
 
 import { Hooks } from "providers";
+import { useQueryClient } from "react-query";
 function Popup({ data }) {
-  const { details, id, confirmation, setConfirmation, setDetails, setAction } =
-    useContext(Hooks);
+  const queryClient = useQueryClient();
+  const {
+    details,
+    id,
+    confirmation,
+    setConfirmation,
+    setDetails,
+    setAction,
+    idTrx,
+  } = useContext(Hooks);
   const [stat, setStat] = useState("");
   //   alert(data);
   console.log(data, "sds");
@@ -35,7 +44,7 @@ function Popup({ data }) {
   console.log("debug disini x", data, id);
   useEffect(() => {
     setStat_(data?.data?.[id]?.status);
-  }, [id, stat]);
+  }, [id, stat, data]);
   return (
     <>
       <div
@@ -138,32 +147,57 @@ function Popup({ data }) {
               className="d-flex"
               style={{ columnGap: "15px", justifyContent: "flex-end" }}
             >
-              {console.log(stat, "sdsd")}
-              <div className="baris-button">
-                <button
-                  className="btn-action-detail"
-                  onClick={(e) => {
-                    setConfirmation(!confirmation);
-                    setDetails(false);
-                    setAction(0);
-                  }}
-                >
-                  Tolak
-                </button>
-              </div>
+              {data?.data?.[id]?.status !== 3 ? (
+                <>
+                  <div className="baris-button">
+                    <button
+                      className="btn-action-detail"
+                      onClick={(e) => {
+                        setConfirmation(!confirmation);
+                        setDetails(false);
+                        setAction(0);
+                      }}
+                    >
+                      Tolak
+                    </button>
+                  </div>
 
-              <div className="baris-button">
-                <button
-                  className="btn-action-detail discard"
-                  onClick={(e) => {
-                    setConfirmation(!confirmation);
-                    setDetails(false);
-                    setAction(1);
-                  }}
-                >
-                  Terima
-                </button>
-              </div>
+                  <div className="baris-button">
+                    <button
+                      className="btn-action-detail discard"
+                      onClick={(e) => {
+                        setConfirmation(!confirmation);
+                        setDetails(false);
+                        setAction(data?.data?.[id]?.status === 1 ? 3 : 1);
+                      }}
+                    >
+                      {data?.data?.[id]?.status === 1
+                        ? "Transaksi Selesai"
+                        : "Terima"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="baris-button">
+                    <button
+                      className="btn-action-detail discard"
+                      onClick={async (e) => {
+                        alert("sds");
+                        // await queryClient.refetchQueries(["getCustomerTrx"], {
+                        //   active: true,
+                        // });
+                        // await queryClient.refetchQueries();
+                        // setConfirmation(!confirmation);
+                        // setDetails(false);
+                        // setAction(data?.data?.[id]?.status === 1 ? 3 : 1);
+                      }}
+                    >
+                      Lihat Rating
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

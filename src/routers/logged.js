@@ -1,6 +1,8 @@
+/* eslint-disable no-unreachable */
 // /* eslint-disable no-unreachable */
 import React, { useContext, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
+// import { useQuery, QueryClient } from "react-query";
 import Wrapper from "components/layouts";
 import { Hooks } from "providers";
 import {
@@ -11,16 +13,48 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-import { useMutation, useQuery } from "react-query";
-import { postApproveTrxAgent, postDeclineTrxAgent } from "api/agent";
+import {
+  useMutation,
+  useQuery,
+  QueryClient,
+  useQueryClient,
+} from "react-query";
+import {
+  confirmTrx,
+  postApproveTrxAgent,
+  postDeclineTrxAgent,
+  postFinishTrxAgent,
+} from "api/agent";
 import { deleteTrx } from "api/customer";
 import Popup from "components/layouts/popup/popup";
 
 const Logged = ({ component: Component, ...rest }) => {
+  // const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
+
+  // const refetchQuery = async () => {
+  //   await queryClient.refetchQueries();
+  // };
+  const {
+    details,
+    setDetails,
+    confirmation,
+    setConfirmation,
+    id,
+    action,
+    idTrx,
+    setPopUpRate,
+    popUpRate,
+  } = useContext(Hooks);
+  console.log(details, ">>debug");
   const { isLoading, isError, data, error, mutate } = useMutation(
     "approveTrxAgent",
-    async (e) => postApproveTrxAgent({ id_transaksi: 3 }),
-    {}
+    async (e) => postApproveTrxAgent({ id_transaksi: idTrx }),
+    {
+      onSuccess: async () => {
+        await queryClient.refetchQueries();
+      },
+    }
   );
   const {
     isLoading: loadDec,
@@ -29,9 +63,28 @@ const Logged = ({ component: Component, ...rest }) => {
     error: errDec,
     mutate: mutateDec,
   } = useMutation(
-    "approveTrxAgent",
-    async (e) => postDeclineTrxAgent({ id_transaksi: 3 }),
-    {}
+    "declineTrxAgent",
+    async (e) => postDeclineTrxAgent({ id_transaksi: idTrx }),
+    {
+      onSuccess: async () => {
+        await queryClient.refetchQueries();
+      },
+    }
+  );
+  const {
+    isLoading: loadFinish,
+    isError: isErrorFinish,
+    data: dataFinish,
+    error: errFinish,
+    mutate: mutateFinish,
+  } = useMutation(
+    "finishTrxAgent",
+    async (e) => postFinishTrxAgent({ id_transaksi: idTrx }),
+    {
+      onSuccess: async () => {
+        await queryClient.refetchQueries();
+      },
+    }
   );
   const {
     isLoading: loadDel,
@@ -39,18 +92,16 @@ const Logged = ({ component: Component, ...rest }) => {
     data: dataDel,
     error: errDel,
     mutate: mutateDel,
-  } = useMutation("deleteTrx", async (e) => deleteTrx({ id_transaksi: 3 }), {});
-  const {
-    details,
-    setDetails,
-    confirmation,
-    setConfirmation,
-    id,
-    action,
-    setPopUpRate,
-    popUpRate,
-  } = useContext(Hooks);
-  console.log(details, ">>debug");
+  } = useMutation(
+    "deleteTrx",
+    async (e) => deleteTrx({ id_transaksi: idTrx }),
+    {
+      onSuccess: async () => {
+        await queryClient.refetchQueries();
+      },
+    }
+  );
+
   useEffect(() => {}, [details]);
   const token = localStorage.getItem("token");
   console.log(token, "sd");
@@ -65,30 +116,34 @@ const Logged = ({ component: Component, ...rest }) => {
   // }, [details]);
   const Actx = (action) => {
     if (action == 0) {
-      return "Kamu akan membatalkan pembayaran";
+      return "Kamu akan membatalkan transaksi";
     } else if (action == 1) {
-      return "Kamu akan mengkonfirmasi pembayaran";
+      return "Kamu akan mengkonfirmasi transaksi";
     } else if (action == 2) {
-      return "Kamu akan membatalkan pembayaran";
-    } else if (action == 3) {
       return "Kamu akan menghapus transaksi";
+    } else if (action == 3) {
+      return "Kamu akan menyelesaikan transaksi";
     }
   };
-  const hitConfirmation = (stat) => {
+
+  const hitConfirmation = async (stat) => {
     switch (stat) {
       case 0:
-        mutateDec();
+        await mutateDec(); //menolak
+
         break;
       case 1:
-        mutate();
+        await mutate(); //confirm
+
         break;
       case 2:
-        mutateDec();
+        await mutateDel(); //delete
+
         break;
       case 3:
-        mutateDel();
-        break;
+        await mutateFinish();
 
+        break;
       default:
         break;
     }
@@ -100,13 +155,11 @@ const Logged = ({ component: Component, ...rest }) => {
       render={(props) => {
         return (
           <>
-
             <div
               onClick={() => {
                 setDetails(false);
                 setPopUpRate(false);
                 setConfirmation(false);
-
               }}
               className={`overlay position-fixed d-none ${
                 (details || popUpRate) && "d-block"
@@ -159,8 +212,8 @@ const Logged = ({ component: Component, ...rest }) => {
               </DialogActions>
             </Dialog>
 
+            <Popup />
             <Wrapper>
-              <Popup />
               <Component {...props} />
             </Wrapper>
           </>

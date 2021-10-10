@@ -153,7 +153,10 @@ function DetailTransaction({ data }) {
                           <img src={WaIcon} alt="icon-wa" />
                         </p>
                         <p className="label-nomor">
-                          <a href="#" className="link-nomor">
+                          <a
+                            href={`https://wa.me/${val.agen.no_telp}`}
+                            className="link-nomor"
+                          >
                             {val.agen.no_telp}
                           </a>
                         </p>
