@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 //plugin
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -6,6 +6,8 @@ import Select from "react-select";
 import Spinner from "assets/img/spinner.svg";
 import { DataGrid } from "@material-ui/data-grid";
 import { useParams } from "react-router-dom";
+import { useHistory, useRouter } from "react-router";
+import { debounce } from "lodash";
 //query
 import {
   useMutation,
@@ -18,6 +20,7 @@ import {
   getCity,
   getDistrict,
   getProvince,
+  postTransaction,
 } from "api/transactions";
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -35,29 +38,6 @@ const customStyles = {
   }),
 };
 
-const columns = [
-  { field: "id", headerName: "ID", width: 100 },
-  {
-    field: "NamaAgen",
-    headerName: "Nama Agen",
-    width: 200,
-    editable: true,
-  },
-  {
-    field: "NomorTelp",
-    headerName: "Nomor Telp",
-    width: 200,
-    editable: true,
-  },
-  {
-    field: "Alamat",
-    headerName: "Alamat",
-    type: "number",
-    width: 200,
-    editable: true,
-  },
-];
-
 const rows = [
   { id: 1, NamaAgen: "Snow", NomorTelp: "Jon", Alamat: 35 },
   { id: 2, NamaAgen: "Lannister", NomorTelp: "Cersei", Alamat: 42 },
@@ -69,17 +49,19 @@ const rows = [
   { id: 8, NamaAgen: "Frances", NomorTelp: "Rossini", Alamat: 36 },
   { id: 9, NamaAgen: "Roxie", NomorTelp: "Harvey", Alamat: 65 },
 ];
+
 function FormTransaction() {
   const [province, setProvince] = useState([]);
   const [city, setCity] = useState([]);
   const [district, setDistrict] = useState([]);
+  const [agentResult, setAgentResult] = useState([]);
   const [loading, setLoading] = useState(true);
   const formik = useFormik({
     initialValues: {
-      id_cust: localStorage.getItem("id"),
+      id_cust: parseInt(localStorage.getItem("id")),
       jenis_layanan: "Laku Pandai",
       jenis_transaksi: "Setor-Pasti",
-      nominal_transaksi_idr: "",
+      nominal_transaksi_idr: 0,
       provinsi: "",
       kabko: "",
       kecamatan: "",
@@ -90,9 +72,7 @@ function FormTransaction() {
       id_cust: Yup.number().required("sdsd"),
       jenis_layanan: Yup.string().required("sdsd"),
       jenis_transaksi: Yup.string().required(),
-      nominal_transaksi_idr: Yup.number()
-        .typeError("must be number")
-        .required(),
+      nominal_transaksi_idr: Yup.number().required(),
       provinsi: Yup.string().required(),
       kabko: Yup.string().required(),
       kecamatan: Yup.string().required(),
@@ -100,8 +80,20 @@ function FormTransaction() {
     }),
     onSubmit: async (values) => {
       await mutate();
+      // await setAgentResult(data);
     },
   });
+  const changeHandler = (val, datas) => {
+    formik.setValues({
+      ...formik.values,
+      [val]: datas,
+    });
+  };
+  const debouncedChangeHandler = useCallback(
+    (e, datas) => debounce(changeHandler(e, datas), 300),
+    []
+  );
+
   const {
     isLoading: loadingProv,
     isError: isErrorProv,
@@ -148,6 +140,21 @@ function FormTransaction() {
       enabled: false,
     }
   );
+  let history = useHistory();
+  const {
+    isLoading: isLoadingTrx,
+    isError: isErrorTrx,
+    data: dataTrx,
+    error: errorTrx,
+    mutate: mutateTrx,
+  } = useMutation("postTrx", async (e) => postTransaction(e), {
+    enabled: false,
+    onSuccess: () => {
+      history.push({
+        pathname: "/home",
+      });
+    },
+  });
 
   const selectCity = async (val) => {
     console.log(val, "isinyapaxxkota");
@@ -171,6 +178,41 @@ function FormTransaction() {
     };
     await mutateDistrict(data__);
   };
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    {
+      field: "NamaAgen",
+      headerName: "Nama Agen",
+      width: 200,
+      editable: true,
+    },
+    {
+      field: "NomorTelp",
+      headerName: "Nomor Telp",
+      width: 200,
+      editable: true,
+    },
+    {
+      field: "Alamat",
+      headerName: "Alamat",
+      type: "number",
+      width: 200,
+      editable: true,
+    },
+    {
+      field: "Action",
+      headerName: "Action",
+      renderCell: (cellValues) => {
+        console.log(cellValues.row.id_agent, ">>ambilid");
+        const data = {
+          ...formik.values,
+          id_agen: cellValues.row.id_agent,
+        };
+        console.log(data, ">>ambilid");
+        return <button onClick={(e) => mutateTrx(data)}>Create trx</button>;
+      },
+    },
+  ];
   useEffect(() => {
     const __province = [];
     const __city = [];
@@ -192,7 +234,6 @@ function FormTransaction() {
           label: val.Name,
         });
       });
-      console.log(__city, "pelijuh");
       setCity(__city);
     }
     if (dataDistrict?.data?.length > 0) {
@@ -205,11 +246,35 @@ function FormTransaction() {
         setDistrict(__district);
       });
     }
+    console.log(data, ">>testing");
+    if (data?.data?.list_rekomendasi_agen !== null) {
+      // alert("sdsd");
+      //   { id: 1, NamaAgen: "Snow", NomorTelp: "Jon", Alamat: 35 },
+      const datas = [];
+      data?.data?.list_rekomendasi_agen.map((val, i) => {
+        datas.push({
+          id: i,
+          id_agent: val.id_agen,
+          NamaAgen: val.nama_agen,
+          NomorTelp: val.no_telp,
+          Alamat: val.alamat_lengkap.length > 0 ? val.alamat_lengkap : "dummy",
+        });
+      });
+      console.log(datas, ">>lolo");
+      setAgentResult(datas);
+    }
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [dataProv, dataCity, dataDistrict]);
+  }, [dataProv, dataCity, dataDistrict, data]);
   const { type } = useParams();
+  const tesDebounce = debounce((e) => {
+    // alert(e.target.name);
+    formik.setValues({
+      ...formik.values,
+      [e.target.name]: e.target.value,
+    });
+  }, 500);
   return (
     <React.Fragment>
       {loading ? (
@@ -223,6 +288,7 @@ function FormTransaction() {
             name="id_cust"
             value={localStorage.getItem("id")}
             onChange={formik.handleChange}
+            hidden
           />
           <div className="form__wrap">
             <div className="form__title">
@@ -235,9 +301,9 @@ function FormTransaction() {
               <div className="formInput">
                 <label htmlFor="">Nominal Transaksi</label>
                 <input
-                  type="text"
+                  type="number"
                   name="nominal_transaksi_idr"
-                  onChange={formik.handleChange}
+                  onChange={(e) => tesDebounce(e)}
                 />
                 {formik.touched.nominal_transaksi_idr &&
                 formik.errors.nominal_transaksi_idr ? (
@@ -251,8 +317,9 @@ function FormTransaction() {
                 <input
                   type="text"
                   name="alamat_lengkap"
-                  onChange={formik.handleChange}
+                  onChange={(e) => tesDebounce(e)}
                 />
+                {console.log(formik.values)}
                 {formik.touched.alamat_lengkap &&
                 formik.errors.alamat_lengkap ? (
                   <span className="error">{formik.errors.alamat_lengkap}</span>
@@ -268,7 +335,7 @@ function FormTransaction() {
                       selectCity(e);
                       formik.setValues({
                         ...formik.values,
-                        provinsi: e.value,
+                        provinsi: e.label,
                       });
                     }}
                     name="provinsi"
@@ -287,7 +354,7 @@ function FormTransaction() {
                       selectDistrict(e);
                       formik.setValues({
                         ...formik.values,
-                        kabko: e.value,
+                        kabko: e.label,
                       });
                     }}
                   />
@@ -304,7 +371,7 @@ function FormTransaction() {
                     onChange={(e) =>
                       formik.setValues({
                         ...formik.values,
-                        kecamatan: e.value,
+                        kecamatan: e.label,
                       })
                     }
                   />
@@ -320,7 +387,7 @@ function FormTransaction() {
                 cari agent
               </button>
             </div>
-            {/* <div
+            <div
               style={{
                 height: 400,
                 width: "100%",
@@ -329,13 +396,21 @@ function FormTransaction() {
               }}
             >
               <DataGrid
-                rows={rows}
+                rows={agentResult}
                 columns={columns}
                 pageSize={5}
                 checkboxSelection
                 disableSelectionOnClick
               />
-            </div> */}
+              {/* {data?.data?.list_rekomendasi_agen?.map((val, i) => {
+              console.log(val, ">>hehe");
+              return (
+                <>
+                  <div className="">{val.kecamatan}</div>
+                </>
+              );
+            })} */}
+            </div>
           </div>
         </form>
       )}
