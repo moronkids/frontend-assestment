@@ -29,7 +29,7 @@ function Popup() {
         className="h-100"
         style={{
           height: "100%",
-          display: popUpRate && "flex",
+          display: popUpRate ? "flex": 'none',
           position: "absolute",
           // display: "flex",
           width: "100vw",

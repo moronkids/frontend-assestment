@@ -58,7 +58,7 @@ function Popup({ data }) {
   const [stat, setStat] = useState("");
   //   alert(data);
   console.log(data, "sds");
-
+  // alert('adalah')
   const setStat_ = async (val) => {
     // alert(val?.data?.[id].status);
     console.log("debug disini func", val);
@@ -207,8 +207,6 @@ function Popup({ data }) {
                   <div className="col-lg-12 col-12">
                     <button
                       onClick={(e) => {
-                        data?.data?.[id]?.status === 3
-                          
                         setConfirmation(!confirmation);
                         setDetails(false);
                         setAction(
@@ -217,7 +215,8 @@ function Popup({ data }) {
                             : data?.data?.[id]?.status === 1 ? 1 : 0
                         );
                       }}
-                      className={handleButtonClassName(transaksi?.status)}
+                      className="btn btn-secondary float-right"
+                      // className={handleButtonClassName(transaksi?.status)}
                       disabled={data?.data?.[id]?.status === 3 && true}
                       style={{
                         pointerEvents: data?.data?.[id]?.status === 3 && "none",
