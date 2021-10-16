@@ -179,29 +179,30 @@ function FormTransaction() {
     await mutateDistrict(data__);
   };
   const columns = [
-    { field: "id", headerName: "ID", width: 100 },
+    { field: "id", headerName: "ID", width: 90 },
     {
       field: "NamaAgen",
       headerName: "Nama Agen",
-      width: 200,
+      width: 150,
       editable: true,
     },
     {
       field: "NomorTelp",
       headerName: "Nomor Telp",
-      width: 200,
+      width: 150,
       editable: true,
     },
     {
       field: "Alamat",
       headerName: "Alamat",
       type: "number",
-      width: 200,
+      width: 150,
       editable: true,
     },
     {
       field: "Action",
       headerName: "Action",
+      width: 200,
       renderCell: (cellValues) => {
         console.log(cellValues.row.id_agent, ">>ambilid");
         const data = {
@@ -209,7 +210,11 @@ function FormTransaction() {
           id_agen: cellValues.row.id_agent,
         };
         console.log(data, ">>ambilid");
-        return <button onClick={(e) => mutateTrx(data)}>Create trx</button>;
+        return (
+          <button className="btn btn-primary" onClick={(e) => mutateTrx(data)}>
+            Select
+          </button>
+        );
       },
     },
   ];
@@ -253,7 +258,7 @@ function FormTransaction() {
       const datas = [];
       data?.data?.list_rekomendasi_agen.map((val, i) => {
         datas.push({
-          id: i,
+          id: i + 1,
           id_agent: val.id_agen,
           NamaAgen: val.nama_agen,
           NomorTelp: val.no_telp,
@@ -272,7 +277,7 @@ function FormTransaction() {
     // alert(e.target.name);
     formik.setValues({
       ...formik.values,
-      [e.target.name]: e.target.value,
+      [e.target.name]: parseInt(e.target.value) || e.target.value,
     });
   }, 500);
   return (
@@ -383,7 +388,11 @@ function FormTransaction() {
             </div>
             <div>
               {console.log(formik.errors, "sdsd")}
-              <button type="submit" onClick={(e) => formik.handleSubmit(e)}>
+              <button
+                className="btn btn-secondary mt-4"
+                type="submit"
+                onClick={(e) => formik.handleSubmit(e)}
+              >
                 cari agent
               </button>
             </div>
@@ -399,7 +408,7 @@ function FormTransaction() {
                 rows={agentResult}
                 columns={columns}
                 pageSize={5}
-                checkboxSelection
+                // checkboxSelection
                 disableSelectionOnClick
               />
               {/* {data?.data?.list_rekomendasi_agen?.map((val, i) => {
