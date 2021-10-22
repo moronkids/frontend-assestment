@@ -45,6 +45,7 @@ const Logged = ({ component: Component, ...rest }) => {
     idTrx,
     setPopUpRate,
     popUpRate,
+    setAgent,
   } = useContext(Hooks);
   console.log(details, ">>debug");
   const { isLoading, isError, data, error, mutate } = useMutation(
@@ -101,7 +102,7 @@ const Logged = ({ component: Component, ...rest }) => {
       },
     }
   );
-  console.log(idTrx, 'transaksi')
+  console.log(idTrx, "transaksi");
   useEffect(() => {}, [details]);
   const token = localStorage.getItem("token");
   console.log(token, "sd");
@@ -124,6 +125,7 @@ const Logged = ({ component: Component, ...rest }) => {
       return "Kamu akan menghapus transaksi";
     } else if (action == 3) {
       return "Kamu akan menyelesaikan transaksi";
+    } else {
     }
   };
 
@@ -161,6 +163,7 @@ const Logged = ({ component: Component, ...rest }) => {
                 setDetails(false);
                 setPopUpRate(false);
                 setConfirmation(false);
+                setAgent(false);
               }}
               className={`overlay position-fixed d-none ${
                 (details || popUpRate) && "d-block"

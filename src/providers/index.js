@@ -5,11 +5,17 @@ const Index = (props) => {
   const [toggle, setToggle] = useState(false);
   const [popUpRate, setPopUpRate] = useState(false);
   const [details, setDetails] = useState(false);
+  const [agent, setAgent] = useState(false);
   const [id, setId] = useState("");
+  const [rateCustomer, setRateCustomer] = useState("");
   const [idTrx, setIdTrx] = useState("");
   const [confirmation, setConfirmation] = useState(false);
   const [action, setAction] = useState("");
   const valx = {
+    agent,
+    setAgent,
+    rateCustomer,
+    setRateCustomer,
     activeTab,
     setActiveTab,
     toggle,

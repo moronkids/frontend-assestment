@@ -35,7 +35,7 @@ function handleButtonClassName(status) {
 
 // function untuk handle class text button
 function handleTextButton(status) {
-  console.log(status, 'popup')
+  console.log(status, "popup");
   if (status === 3) {
     return "Lihat Rating";
   } else if (status === 2) {
@@ -54,6 +54,8 @@ function Popup({ data }) {
     setDetails,
     setAction,
     idTrx,
+    setAgent,
+    setPopUpRate,
   } = useContext(Hooks);
   const [stat, setStat] = useState("");
   //   alert(data);
@@ -203,28 +205,73 @@ function Popup({ data }) {
                 </div>
 
                 {/* Baris Content */}
-                <div className="row">
-                  <div className="col-lg-12 col-12">
-                    <button
-                      onClick={(e) => {
-                        setConfirmation(!confirmation);
-                        setDetails(false);
-                        setAction(
-                          data?.data?.[id]?.status === 2
-                            ? 2
-                            : data?.data?.[id]?.status === 1 ? 1 : 0
-                        );
-                      }}
-                      className="btn btn-secondary float-right"
-                      // className={handleButtonClassName(transaksi?.status)}
-                      disabled={data?.data?.[id]?.status === 3 && true}
-                      style={{
-                        pointerEvents: data?.data?.[id]?.status === 3 && "none",
-                      }}
-                    >
-                      {handleTextButton(data?.data?.[id]?.status)}
-                    </button>
-                  </div>
+                <div
+                  className="d-flex"
+                  style={{ columnGap: "15px", justifyContent: "flex-end" }}
+                >
+                  {data?.data?.[id]?.status !== 3 &&
+                  data?.data?.[id]?.status !== 2 ? (
+                    <>
+                      <div className="baris-button">
+                        <button
+                          className="btn-action-detail"
+                          onClick={(e) => {
+                            setConfirmation(!confirmation);
+                            setDetails(false);
+                            setAction(0);
+                          }}
+                        >
+                          {data?.data?.[id]?.status === 0
+                            ? "Tolak"
+                            : data?.data?.[id]?.status === 1 && "Batalkan"}
+                        </button>
+                      </div>
+
+                      <div className="baris-button">
+                        <button
+                          className="btn-action-detail discard"
+                          onClick={(e) => {
+                            setConfirmation(!confirmation);
+                            setDetails(false);
+                            setAction(
+                              data?.data?.[id]?.status === 0
+                                ? 1
+                                : data?.data?.[id]?.status === 3
+                                ? 3
+                                : data?.data?.[id]?.status === 1 && 3
+                            );
+                          }}
+                        >
+                          {data?.data?.[id]?.status === 1
+                            ? "Transaksi Selesai"
+                            : "Terima"}
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="baris-button">
+                        <button
+                          className="btn-action-detail discard"
+                          onClick={(e) => {
+                            setConfirmation(
+                              data?.data?.[id]?.status === 2 && !confirmation
+                            );
+                            setDetails(data?.data?.[id]?.status === 2 && false);
+                            setAction(data?.data?.[id]?.status === 2 ? 2 : 4);
+                            setPopUpRate(
+                              data?.data?.[id]?.status === 3 && true
+                            );
+                            setAgent(data?.data?.[id]?.status === 3 && true);
+                          }}
+                        >
+                          {data?.data?.[id]?.status === 3
+                            ? "Lihat Rating"
+                            : "Hapus"}
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

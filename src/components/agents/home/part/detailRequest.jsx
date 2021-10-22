@@ -8,12 +8,13 @@ import { debounceSearchRender } from "helper/debouncer";
 import Spinner from "assets/img/spinner.svg";
 const DetailRequest = ({ data, isLoading }) => {
   // console.log(">>", data);
-  const { details, setDetails, setId, setIdTrx } = useContext(Hooks);
+  const { details, setDetails, setId, setIdTrx, setRateCustomer } =
+    useContext(Hooks);
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
       field: "NamaAgen",
-      headerName: "Nama Agen",
+      headerName: "Nama Customer",
       width: 200,
       editable: true,
       options: {
@@ -43,6 +44,17 @@ const DetailRequest = ({ data, isLoading }) => {
       },
     },
     {
+      field: "Status",
+      headerName: "Status",
+      // type: "string",
+      width: 200,
+      editable: true,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
       name: "Action",
       headerName: "Action",
       options: {
@@ -52,6 +64,41 @@ const DetailRequest = ({ data, isLoading }) => {
       },
     },
   ];
+  const getStatus = (val) => {
+    switch (val) {
+      case 0:
+        return (
+          <>
+            <i>Menunggu Konfirmasi</i>
+          </>
+        );
+        break;
+      case 1:
+        return (
+          <>
+            <i>Agen dalam perjalanan</i>
+          </>
+        );
+        break;
+      case 2:
+        return (
+          <>
+            <i>Dibatalakan</i>
+          </>
+        );
+        break;
+      case 3:
+        return (
+          <>
+            <b>Selesai</b>
+          </>
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
   const datas = [];
   const rowx = async () => {
     data?.data?.map((val, i) => {
@@ -59,7 +106,8 @@ const DetailRequest = ({ data, isLoading }) => {
         id: i + 1,
         NamaAgen: val.customer.nama,
         NomorTelp: val.customer.no_telp,
-        Alamat: val.customer.alamat_cust_lengkap,
+        Alamat: val.customer.alamat_lengkap,
+        Status: getStatus(val.status),
         Action: (
           <>
             <button
@@ -70,6 +118,7 @@ const DetailRequest = ({ data, isLoading }) => {
                 setDetails(!details);
                 setId(i);
                 setIdTrx(val.id);
+                setRateCustomer(val.rating);
               }}
             >
               Details
@@ -124,6 +173,7 @@ const DetailRequest = ({ data, isLoading }) => {
                   val.NamaAgen,
                   val.NomorTelp,
                   val.Alamat,
+                  val.Status,
                   val.Action,
                 ];
               })}

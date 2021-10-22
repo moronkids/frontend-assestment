@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   &__wrap {
-    max-width: 877px;
-    width: 700px;
+    // max-width: ;
+    width: 100%;
     height: fit-content;
     @media (max-width: 800px) {
       width: 100%;
@@ -98,4 +98,13 @@
       padding: 10px 20px;
     }
   }
+}
+div[class$="-ValueContainer"] {
+  padding-top: 0px !important;
+  max-height: 60px;
+}
+div[class$="-Input"] {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
 }

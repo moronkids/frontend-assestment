@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// export const url = "https://4e94f400-36b3-4b9c-a642-7d61051c824f.mock.pstmn.io";
+// export const url = "http://34.81.92.192";
 export const url = "https://pure-scrubland-77616.herokuapp.com";
 
 const TOKEN = localStorage.getItem("tokenGen");

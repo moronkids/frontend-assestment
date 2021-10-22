@@ -111,7 +111,7 @@ function DetailTransaction({ data }) {
                     </div>
                     <div className="col-lg-6 col-md-12 col-12">
                       <p className="label-nominal-transaksi">
-                        {val.nominal_transaksi_idr}
+                        {val.nominal_transaksi}
                       </p>
                     </div>
                   </div>

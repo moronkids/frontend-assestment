@@ -56,11 +56,12 @@ function FormTransaction() {
   const [district, setDistrict] = useState([]);
   const [agentResult, setAgentResult] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [jenis_trx, setJenis_trx] = useState("");
   const formik = useFormik({
     initialValues: {
       id_cust: parseInt(localStorage.getItem("id")),
-      jenis_layanan: "Laku Pandai",
-      jenis_transaksi: "Setor-Pasti",
+      jenis_layanan: "",
+      jenis_transaksi: "",
       nominal_transaksi_idr: 0,
       provinsi: "",
       kabko: "",
@@ -200,6 +201,13 @@ function FormTransaction() {
       editable: true,
     },
     {
+      field: "Rating",
+      headerName: "Rating",
+      type: "number",
+      width: 150,
+      editable: true,
+    },
+    {
       field: "Action",
       headerName: "Action",
       width: 200,
@@ -217,6 +225,36 @@ function FormTransaction() {
         );
       },
     },
+  ];
+
+  const jenis_layanan = [
+    { value: "Laku Pandai", label: "Laku Pandai" },
+    { value: "Mini ATM BRI", label: "Mini ATM BRI" },
+    { value: "Tunai", label: "Tunai" },
+  ];
+  let laku_pandai = [
+    { value: "Cash-in & Out", label: "Cash-in & Out" },
+    { value: "Report", label: "Report" },
+    { value: "Setoran Uang", label: "Setoran Uang" },
+    { value: "Tarik Tunai", label: "Tarik Tunai" },
+    { value: "Isi Ulang Pulsa", label: "Isi Ulang Pulsa" },
+    { value: "Belanja Merchant", label: "Belanja Merchant" },
+  ];
+  let mini_atm = [
+    { value: "Setoran Pinjaman", label: "Setoran Pinjaman" },
+    { value: "Setoran Simpanan", label: "Setoran Simpanan" },
+    { value: "Tarik Tunai", label: "Tarik Tunai" },
+  ];
+  let tunai = [
+    { value: "Registrasi Mobile Banking", label: "Registrasi Mobile Banking" },
+    {
+      value: "Registrasi Internet Banking",
+      label: "Registrasi Internet Banking",
+    },
+    { value: "Informasi Rekening", label: "Informasi Rekening" },
+    { value: "Transfer Pembayaran", label: "Transfer Pembayaran" },
+    { value: "Isi Ulang Pulsa", label: "Isi Ulang Pulsa" },
+    { value: "Setor - Pasti", label: "Setor - Pasti" },
   ];
   useEffect(() => {
     const __province = [];
@@ -253,8 +291,6 @@ function FormTransaction() {
     }
     console.log(data, ">>testing");
     if (data?.data?.list_rekomendasi_agen !== null) {
-      // alert("sdsd");
-      //   { id: 1, NamaAgen: "Snow", NomorTelp: "Jon", Alamat: 35 },
       const datas = [];
       data?.data?.list_rekomendasi_agen.map((val, i) => {
         datas.push({
@@ -262,6 +298,7 @@ function FormTransaction() {
           id_agent: val.id_agen,
           NamaAgen: val.nama_agen,
           NomorTelp: val.no_telp,
+          Rating: val.rating,
           Alamat: val.alamat_lengkap.length > 0 ? val.alamat_lengkap : "dummy",
         });
       });
@@ -271,7 +308,15 @@ function FormTransaction() {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, [dataProv, dataCity, dataDistrict, data]);
+  }, [
+    dataProv,
+    dataCity,
+    dataDistrict,
+    data,
+    jenis_trx,
+    setJenis_trx,
+    formik.values.jenis_layanan,
+  ]);
   const { type } = useParams();
   const tesDebounce = debounce((e) => {
     // alert(e.target.name);
@@ -297,10 +342,10 @@ function FormTransaction() {
           />
           <div className="form__wrap">
             <div className="form__title">
-              <h1>Jenis Transaksi</h1>
-              <div className="lblSetoran text-capitalize">
+              <h1>Transaksi</h1>
+              {/* <div className="lblSetoran text-capitalize">
                 {type.replace("_", "-")}
-              </div>
+              </div> */}
             </div>
             <div className="boxInput">
               <div className="formInput">
@@ -315,6 +360,77 @@ function FormTransaction() {
                   <span className="error">
                     {formik.errors.nominal_transaksi_idr}
                   </span>
+                ) : null}
+              </div>
+              <div
+                className="formInput"
+                style={
+                  {
+                    // paddingBottom: "35px",
+                  }
+                }
+              >
+                <label htmlFor="">Jenis Layanan</label>
+                <Select
+                  styles={customStyles}
+                  options={jenis_layanan}
+                  name="jenis_layanan"
+                  id="jenis_layanan"
+                  onChange={(e) => {
+                    formik.setValues({
+                      ...formik.values,
+                      jenis_layanan: e.label,
+                      jenis_transaksi: null,
+                    });
+                    setJenis_trx(null);
+                    laku_pandai = null;
+                    mini_atm = null;
+                    tunai = null;
+                    // document.getElementById("jenis_transaksi").remove();
+                    alert("sds");
+                  }}
+                />
+                {formik.touched.jenis_layanan && formik.errors.jenis_layanan ? (
+                  <span className="error">{formik.errors.jenis_layanan}</span>
+                ) : null}
+              </div>
+              <div
+                className="formInput"
+                style={
+                  {
+                    // paddingBottom: "35px",
+                  }
+                }
+              >
+                <label htmlFor="">Jenis Transaksi</label>
+                <Select
+                  isClearabel={true}
+                  styles={customStyles}
+                  options={
+                    formik.values.jenis_layanan === "Laku Pandai"
+                      ? laku_pandai
+                      : formik.values.jenis_layanan === "Tunai"
+                      ? tunai
+                      : formik.values.jenis_layanan === "Mini ATM BRI"
+                      ? mini_atm
+                      : null
+                  }
+                  name="jenis_transaksi"
+                  id="jenis_transaksi"
+                  // values={jenis_trx || ""}
+                  // value={options.value}
+                  label={jenis_trx || ""}
+                  onChange={(e) => {
+                    formik.setValues({
+                      ...formik.values,
+                      jenis_transaksi: e.value,
+                    });
+                    setJenis_trx(e.value);
+                  }}
+                />
+                {formik.touched.jenis_transaksi &&
+                formik.errors.jenis_transaksi ? (
+                  <span className="error">{formik.errors.jenis_transaksi}</span>
                 ) : null}
               </div>
               <div className="formInput">

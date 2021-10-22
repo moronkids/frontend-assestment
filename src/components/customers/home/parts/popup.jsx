@@ -34,7 +34,7 @@ function handleButtonClassName(status) {
 
 // function untuk handle class text button
 function handleTextButton(status) {
-  console.log(status, 'popup')
+  console.log(status, "popup");
   if (status === 3) {
     return "Beri Rating";
   } else if (status === 2) {
@@ -192,13 +192,15 @@ function Popup({ data }) {
                         setAction(
                           data?.data?.[id]?.status === 2
                             ? 2
-                            : data?.data?.[id]?.status === 1 ? 1 : 0
+                            : data?.data?.[id]?.status === 1
+                            ? 1
+                            : 0
                         );
                       }}
                       className={handleButtonClassName(transaksi?.status)}
-                      disabled={data?.data?.[id]?.status === 3 && true}
+                      disabled={data?.data?.[id]?.status === 0 && true}
                       style={{
-                        pointerEvents: data?.data?.[id]?.status === 3 && "none",
+                        pointerEvents: data?.data?.[id]?.rating > 0 && "none",
                       }}
                     >
                       {handleTextButton(data?.data?.[id]?.status)}

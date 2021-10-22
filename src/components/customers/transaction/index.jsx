@@ -16,8 +16,8 @@ function Transaction() {
   );
   return (
     <>
-      <div className="d-block w-100">
-        <ChooseTransaction data={data} isLoading={isLoading}/>
+      <div className="d-block w-100 d-flex justify-content-center align-items-center mx-auto">
+        <FormTransaction data={data} isLoading={isLoading} />
       </div>
     </>
   );
