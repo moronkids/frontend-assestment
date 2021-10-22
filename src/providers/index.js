@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-export const Hooks = createContext();
+export const Hooks = createContext(); //context === redux sama-sama state management
 const Index = (props) => {
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState("home"); //state global -> js bukan strong types
   const [toggle, setToggle] = useState(false);
   const [popUpRate, setPopUpRate] = useState(false);
   const [details, setDetails] = useState(false);

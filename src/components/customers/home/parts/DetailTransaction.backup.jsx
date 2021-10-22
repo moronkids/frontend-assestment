@@ -75,7 +75,7 @@ function DetailTransaction({ data }) {
   //   }
   // };
   const rate = async () => {
-    alert("tes");
+    // alert("tes");
     await setPopUpRate(!popUpRate);
     await setDetails(!details);
   };

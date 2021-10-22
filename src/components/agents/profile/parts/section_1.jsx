@@ -11,8 +11,8 @@ function section_1({ data }) {
         <h1 className="title_section_1">{data?.data.nama_outlet}</h1>
         <h5>Rating</h5>
         <div className="rating">
-          <label htmlFor="rate">10</label>
-          <div>
+          <label htmlFor="rate">{data?.data.rating.toFixed(2)}</label>
+          {/* <div>
             <span>
               <img src={Start} alt="" />
             </span>
@@ -28,7 +28,7 @@ function section_1({ data }) {
             <span>
               <img src={Start} alt="" />
             </span>
-          </div>
+          </div> */}
         </div>
 
         <table>
@@ -38,7 +38,7 @@ function section_1({ data }) {
           </tr>
           <tr>
             <td>Pemilik Agen</td>
-            <td>{data?.data.nama}</td>
+            <td>{data?.data.nama_agen}</td>
           </tr>
           <tr>
             <td>No Telepon</td>

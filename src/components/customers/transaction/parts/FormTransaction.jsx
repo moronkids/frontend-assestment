@@ -387,7 +387,7 @@ function FormTransaction() {
                     mini_atm = null;
                     tunai = null;
                     // document.getElementById("jenis_transaksi").remove();
-                    alert("sds");
+                    // alert("sds");
                   }}
                 />
                 {formik.touched.jenis_layanan && formik.errors.jenis_layanan ? (

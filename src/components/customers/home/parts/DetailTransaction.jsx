@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { PureComponent, useContext, useEffect, useState } from "react";
 import WaIcon from "assets/img/icons/WaIcon.svg";
 import { transactionCustomer } from "dummies/transaction/transactionCustomer";
 import MUIDataTable from "mui-datatables";
