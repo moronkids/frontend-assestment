@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// export const url = "http://34.81.92.192";
-export const url = "https://pure-scrubland-77616.herokuapp.com";
+export const url = "http://backend-a-antar-jemput.digitalent.rakamin.com";
+// export const url = "https://pure-scrubland-77616.herokuapp.com";
 
 const TOKEN = localStorage.getItem("tokenGen");
 export const http = axios.create({
