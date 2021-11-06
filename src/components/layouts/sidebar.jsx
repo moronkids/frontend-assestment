@@ -26,13 +26,16 @@ function Sidebar(props) {
               <div className="position-relative">
                 <div
                   className={`iconBri position-absolute radiusBottomRight ${
-                    loc.pathname === "/home" ? `d-block` : `d-none`
+                    loc.pathname === "/home" || loc.pathname === "/"
+                      ? `d-block`
+                      : `d-none`
                   }`}
                   style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconBri ${
-                    loc.pathname === "/home" && "radius"
+                    (loc.pathname === "/home" || loc.pathname === "/") &&
+                    "radius"
                   } d-flex justify-content-center align-items-center position-relative`}
                 >
                   <img src={IconBri} alt="" srcset="" />
@@ -53,37 +56,21 @@ function Sidebar(props) {
                 />
                 <div
                   className={`iconMenus ${
-                    loc.pathname === "/home" && `active`
+                    (loc.pathname === "/home" || loc.pathname === "/") &&
+                    `active`
                   } ${
                     activeTab === "transaction" && "radius"
                   } d-flex justify-content-center align-items-center position-relative`}
                 >
                   <img
-                    src={loc.pathname === "/home" ? IconHome : IconHomeWhite}
+                    src={
+                      loc.pathname === "/home" || loc.pathname === "/"
+                        ? IconHome
+                        : IconHomeWhite
+                    }
                     alt=""
                   />
                 </div>
-              </div>
-            </Link>
-
-            <Link to="/transaction">
-              <div
-                className={`iconMenus ${
-                  (loc.pathname === "/transaction" ||
-                    loc.pathname.split("/")[1] === "transaction") &&
-                  `active`
-                }  d-flex justify-content-center align-items-center position-relative`}
-                onClick={(e) => setActiveTab("transaction")}
-              >
-                <img
-                  src={
-                    loc.pathname === "/transaction" ||
-                    loc.pathname.split("/")[1] === "transaction"
-                      ? IconTransaction
-                      : IconTransactionWhite
-                  }
-                  alt=""
-                />
               </div>
             </Link>
           </div>
@@ -111,13 +98,16 @@ function Sidebar(props) {
               <div className="position-relative">
                 <div
                   className={`iconBri position-absolute radiusBottomRight ${
-                    loc.pathname === "/home" ? `d-block` : `d-none`
+                    loc.pathname === "/home" || loc.pathname === "/"
+                      ? `d-block`
+                      : `d-none`
                   }`}
                   style={{ background: "#f5f5f5", height: "200px" }}
                 />
                 <div
                   className={`iconBri ${
-                    loc.pathname === "/home" && "radius"
+                    (loc.pathname === "/home" || loc.pathname === "/") &&
+                    "radius"
                   } d-flex justify-content-center align-items-center position-relative`}
                 >
                   <img src={IconBri} alt="" srcset="" />
@@ -138,13 +128,18 @@ function Sidebar(props) {
                 />
                 <div
                   className={`iconMenus ${
-                    loc.pathname === "/home" && `active`
+                    (loc.pathname === "/home" || loc.pathname === "/") &&
+                    `active`
                   } ${
                     loc.pathname === "/profile" && "radius"
                   } d-flex justify-content-center align-items-center position-relative`}
                 >
                   <img
-                    src={loc.pathname === "/home" ? IconHome : IconHomeWhite}
+                    src={
+                      loc.pathname === "/home" || loc.pathname === "/"
+                        ? IconHome
+                        : IconHomeWhite
+                    }
                     alt=""
                   />
                 </div>

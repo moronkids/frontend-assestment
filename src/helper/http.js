@@ -1,19 +1,13 @@
 import axios from "axios";
 
-export const url = "http://backend-a-antar-jemput.digitalent.rakamin.com";
-// export const url = "https://pure-scrubland-77616.herokuapp.com";
+export const base = "https://www.binance.com";
+export const base_ = "https://api.binance.com";
 
 const TOKEN = localStorage.getItem("tokenGen");
 export const http = axios.create({
   timeout: 60000,
   withCredentials: false,
-  headers: {
-    // Authorization: `Bearer ${localStorage.getItem("tokenGen")}`,
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  },
+  headers: {},
 });
 
 http.interceptors.request.use(
