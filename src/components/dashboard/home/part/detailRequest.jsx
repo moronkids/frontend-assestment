@@ -6,53 +6,77 @@ import Spinner from "assets/img/spinner.svg";
 const DetailRequest = ({ data, isLoading }) => {
   const { details, setDetails, setId, setIdTrx, setRateCustomer } =
     useContext(Hooks);
+  const [filter, setFilter] = useState(["a", "b", "c", "Business Analyst"]);
   const columns = [
-    { field: "id", headerName: "No", width: 100 },
     {
-      field: "Coin",
-      headerName: "Coin",
+      field: "id",
+      headerName: "No",
+      width: 100,
+      options: {
+        filter: false,
+        display: "false",
+      },
+    },
+    {
+      name: "Coin",
+      label: "Coin",
       width: 150,
       editable: true,
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
     {
-      field: "LastPrice",
-      headerName: "Last Price",
+      name: "LastPrice",
+      label: "Last Price",
       width: 200,
       editable: true,
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
     {
-      field: "hrChange",
-      headerName: "24hr Change",
+      name: "hrChange",
+      label: "24hr Change",
       type: "number",
       width: 200,
       editable: true,
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
     {
-      field: "MarketCap",
-      headerName: "Market Cap",
+      name: "MarketCap",
+      label: "Market Cap",
       // type: "string",
       width: 200,
       editable: true,
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
     {
+      name: "Tags",
+
+      label: "Tags",
+      // type: "string",
+      width: 200,
+      options: {
+        display: "false",
+
+        filterOptions: {
+          names: filter,
+          display: false,
+        },
+      },
+    },
+    {
       name: "Action",
-      headerName: "Action",
+      label: "Action",
       options: {
         sort: false,
         filter: false,
@@ -63,31 +87,36 @@ const DetailRequest = ({ data, isLoading }) => {
   const [cryptoAsset, setCryptoAsset] = useState([]);
 
   const options = {
-    filterType: "dropdown",
+    // filterType: "dropdown",
     customSearchRender: debounceSearchRender(500),
     responsive: "stacked",
+    // onFilterChange: (index, value, arr) => {
+    //   setFilter([]);
+    // },
+    print: false,
     selectableRows: false, // <===== will turn off checkboxes in rows
   };
-  const datas = [];
-  useEffect(() => {
-    if (cryptoAsset?.length <= 0) {
-      const rowx = async () => {
-        data?.map((val, i) => {
-          console.log(val, "sini");
+  const datas = [
+    {
+      id: 1,
+      Coin: "sdsd",
+      LastPrice: "ssdsd",
+      hrChange: "sdsd",
+      MarketCap: "sdsd",
+      Tags: "bokin",
+      Action: "tes",
+    },
+    {
+      id: 2,
+      Coin: "sdsd",
+      LastPrice: "ssdsd",
+      hrChange: "sdsd",
+      MarketCap: "sdsd",
+      Tags: "loker",
+      Action: "tes",
+    },
+  ];
 
-          // return datas.push({
-          //   id: val.id,
-          //   Coin: val.logo,
-          //   LastPrice: val.lastPrice,
-          //   hrChange: val.priceChange,
-          //   MarketCap: val.volume,
-          //   Action: "tes",
-          // });
-        });
-      };
-      // setCryptoAsset(datas);
-    }
-  }, [cryptoAsset]);
   return (
     <>
       <section className="detail-container d-block m-auto">
@@ -103,19 +132,21 @@ const DetailRequest = ({ data, isLoading }) => {
         >
           <MUIDataTable
             title={"Binance Market Crypto"}
-            data={data.map((val) => {
+            data={data?.map((val, i) => {
               return [
-                val.id,
+                i + 1,
                 val.Coin,
                 val.LastPrice,
                 val.hrChange,
                 val.MarketCap,
+                val.Tags,
                 val.Action,
               ];
             })}
-            columns={columns.map((val) => {
-              return val.headerName;
-            })}
+            // columns={columns.map((val) => {
+            //   return val.headerName;
+            // })}
+            columns={columns}
             options={options}
           />
         </div>

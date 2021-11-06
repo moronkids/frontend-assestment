@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import DetailRequest from "components/dashboard/home/part/detailRequest";
 import { useQuery } from "react-query";
 import { GetAllAsset, Ticker } from "api";
-
+import useWebSocket from "react-use-websocket";
+import { last } from "lodash";
 function Home() {
   const [datas, setDatas] = useState([]);
+  const socketUrl = "wss://stream.binance.com:9443/ws/!ticker@arr";
+  const { lastMessage } = useWebSocket(socketUrl);
+
   const { isLoading, isError, data, error, refetch } = useQuery(
     "getAllAsset",
     async (e) => GetAllAsset(),
-    {}
+    {
+      // refetchInterval: 2000,
+    }
   );
   const {
     isLoading: loadTicker,
@@ -16,39 +22,47 @@ function Home() {
     data: dataTicker,
     error: errorTicker,
     refetch: refetchTicker,
-  } = useQuery("getTicker", async (e) => Ticker(), {});
+  } = useQuery("getTicker", async (e) => Ticker(), {
+    // refetchInterval: 2000,
+  });
   let filtered;
-  const reOrederd = () => {
+
+  // eslint-disable-next-line array-callback-return
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const callbackz = useCallback(() => {
     const datax = [];
-    // eslint-disable-next-line array-callback-return
-    data?.data.map((x) => {
-      // eslint-disable-next-line array-callback-return
-      filtered = dataTicker?.filter((e) => {
-        if (e.symbol === `${x.assetCode}USDT`) {
-          datax.push({
-            id: x.id,
-            Coin: x.assetCode,
-            Logo: x.logoUrl,
-            LastPrice: e.lastPrice,
-            hrChange: e.priceChangePercent,
-            MarketCap: e.volume,
-            Action: "adadeh",
-          });
-        }
-      });
-    });
-    console.log(datax, "eheh");
-    // setDatas(datax);
-    // setDatas(datax);
+    data?.data.map(
+      (x) => {
+        // eslint-disable-next-line array-callback-return
+        JSON.parse(lastMessage?.data).filter((e) => {
+          if (e.s === `${x.assetCode}USDT`) {
+            datax.push({
+              id: x.id,
+              Coin: x.assetCode,
+              Logo: x.logoUrl,
+              LastPrice: e.c,
+              hrChange: e.P,
+              MarketCap: e.v,
+              Tags: x.tags.join(),
+              Action: "adadeh",
+            });
+          }
+        });
+      },
+      [lastMessage]
+    );
     return datax;
-  };
+  });
+  let result;
   useEffect(() => {
-    if (datas?.length <= 0) {
-      const result = reOrederd();
-      // console.log(result, "iki opo");
+    if (lastMessage) {
+      // if (dataTicker?.length <= 0) {
+      result = callbackz();
       setDatas(result);
+      // console.log(result, "iki opo");
+      // }
     }
-  }, [dataTicker]);
+  }, [result, lastMessage]);
   return (
     //   <noRequest />
     <>
