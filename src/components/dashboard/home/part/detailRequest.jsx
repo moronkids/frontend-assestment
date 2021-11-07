@@ -3,7 +3,10 @@ import MUIDataTable from "mui-datatables";
 import { Hooks } from "providers";
 import { debounceSearchRender } from "helper/debouncer";
 import Spinner from "assets/img/spinner.svg";
+import { ThemeProvider, createTheme } from "@material-ui/core";
+
 const DetailRequest = ({ data, isLoading }) => {
+  const theme = () => createTheme({});
   const { details, setDetails, setId, setIdTrx, setRateCustomer } =
     useContext(Hooks);
   const [filter, setFilter] = useState(["a", "b", "c", "Business Analyst"]);
@@ -93,6 +96,11 @@ const DetailRequest = ({ data, isLoading }) => {
     // onFilterChange: (index, value, arr) => {
     //   setFilter([]);
     // },
+    setRowProps: (row, dataIndex, rowIndex) => {
+      return {
+        style: { color: "blue" },
+      };
+    },
     print: false,
     selectableRows: false, // <===== will turn off checkboxes in rows
   };
@@ -110,25 +118,27 @@ const DetailRequest = ({ data, isLoading }) => {
             margin: "0 auto",
           }}
         >
-          <MUIDataTable
-            title={"Binance Market Crypto"}
-            data={data?.map((val, i) => {
-              return [
-                i + 1,
-                val.Coin,
-                val.LastPrice,
-                val.hrChange,
-                val.MarketCap,
-                val.Tags,
-                val.Action,
-              ];
-            })}
-            // columns={columns.map((val) => {
-            //   return val.headerName;
-            // })}
-            columns={columns}
-            options={options}
-          />
+          <ThemeProvider theme={theme()}>
+            <MUIDataTable
+              title={"Binance Market Crypto"}
+              data={data?.map((val, i) => {
+                return [
+                  i + 1,
+                  val.Coin,
+                  val.LastPrice,
+                  val.hrChange,
+                  val.MarketCap,
+                  val.Tags,
+                  val.Action,
+                ];
+              })}
+              // columns={columns.map((val) => {
+              //   return val.headerName;
+              // })}
+              columns={columns}
+              options={options}
+            />
+          </ThemeProvider>
         </div>
       </section>
     </>

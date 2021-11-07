@@ -46,22 +46,9 @@ function Home() {
           Coin: x.assetCode,
           Logo: x.logoUrl,
           Tag: x.tags,
-          LastPrice:
-            checkPoint &&
-            (parseFloat(filtered[0]?.c).toFixed(2) < ticker?.lastPrice || 0) ? (
-              <div className="text-red-500">
-                {parseFloat(filtered[0]?.c).toFixed(2)}
-              </div>
-            ) : parseFloat(filtered[0]?.c).toFixed(2) > ticker?.lastPrice ||
-              0 ? (
-              <div className="text-green-500">
-                {parseFloat(filtered[0]?.c).toFixed(2)}
-              </div>
-            ) : (
-              <div className="text-gray-800">
-                {parseFloat(filtered[0]?.c).toFixed(2)}
-              </div>
-            ),
+          LastPrice: checkPoint
+            ? parseFloat(filtered[0].c).toFixed(2)
+            : parseFloat(ticker?.lastPrice).toFixed(2) || "0",
           hrChange: checkPoint
             ? parseFloat(filtered[0].P).toFixed(2)
             : parseFloat(ticker?.priceChangePercent).toFixed(2) || "0",
@@ -72,20 +59,20 @@ function Home() {
             : parseFloat(ticker?.volume)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "0",
-          // statLastPrice:
-          //   checkPoint &&
-          //   (filtered[0].c < ticker?.lastPrice || 0
-          //     ? "down"
-          //     : filtered[0].c > ticker?.lastPrice || 0
-          //     ? "up"
-          //     : "none"),
-          // statPercent:
-          //   checkPoint &&
-          //   (filtered[0].P < ticker?.priceChangePercent || 0
-          //     ? "down"
-          //     : filtered[0].P > ticker?.priceChangePercent || 0
-          //     ? "up"
-          //     : "none"),
+          statLastPrice:
+            checkPoint &&
+            (filtered[0].c < ticker?.lastPrice || 0
+              ? "down"
+              : filtered[0].c > ticker?.lastPrice || 0
+              ? "up"
+              : "none"),
+          statPercent:
+            checkPoint &&
+            (filtered[0].P < ticker?.priceChangePercent || 0
+              ? "down"
+              : filtered[0].P > ticker?.priceChangePercent || 0
+              ? "up"
+              : "none"),
           Tags: x.tags.join(),
           Action: (
             <>
