@@ -4,12 +4,34 @@ import { Hooks } from "providers";
 import { debounceSearchRender } from "helper/debouncer";
 import Spinner from "assets/img/spinner.svg";
 import { ThemeProvider, createTheme } from "@material-ui/core";
-
+import Pintu from "assets/img/pintu.webp";
+import Binance from "assets/img/binance.svg";
+import { values } from "lodash";
 const DetailRequest = ({ data, isLoading }) => {
-  const theme = () => createTheme({});
-  const { details, setDetails, setId, setIdTrx, setRateCustomer } =
+  const theme = () =>
+    createTheme({
+      overrides: {
+        MUIDataTableBodyCell: {
+          root: { backgroundColor: "red !important", color: "inherit" },
+        },
+      },
+    });
+  const { details, setDetails, setId, setIdTrx, setRateCustomer, setTag } =
     useContext(Hooks);
-  const [filter, setFilter] = useState(["a", "b", "c", "Business Analyst"]);
+  const [filter, setFilter] = useState([
+    "defi",
+    "innovation-zone",
+    "etf",
+    "pos",
+    "_layer1",
+    "gaming",
+    "polkadot",
+    "nft",
+    "metavers",
+    "pow",
+    "bsc",
+    "storage-zone",
+  ]);
   const columns = [
     {
       field: "id",
@@ -28,6 +50,27 @@ const DetailRequest = ({ data, isLoading }) => {
       options: {
         filter: false,
         sort: true,
+        customBodyRender: function (val) {
+          return (
+            <div className="subpixel-antialiased text-base font-bold text-gray-500 flex flex-row gap-3">
+              <div>
+                <img
+                  src={Pintu}
+                  width="35px"
+                  height="35px"
+                  alt=""
+                  className="rounded-md shadow-lg"
+                />
+              </div>
+              <div>
+                <div>{val[0]}</div>
+                <div className="subpixel-antialiased text-sm text-gray-400">
+                  {val[1]}
+                </div>
+              </div>
+            </div>
+          );
+        },
       },
     },
     {
@@ -38,6 +81,21 @@ const DetailRequest = ({ data, isLoading }) => {
       options: {
         filter: false,
         sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <div
+              className={`subpixel-antialiased text-base font-medium ${
+                value[1] === "up"
+                  ? "text-green-400"
+                  : value[1] === "down"
+                  ? "text-red-400"
+                  : "text-gray-500"
+              }`}
+            >
+              ${value[0]}
+            </div>
+          );
+        },
       },
     },
     {
@@ -49,6 +107,21 @@ const DetailRequest = ({ data, isLoading }) => {
       options: {
         filter: false,
         sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <div
+              className={`subpixel-antialiased text-base font-medium ${
+                value[1] === "up"
+                  ? "text-green-500"
+                  : value[1] === "down"
+                  ? "text-red-500"
+                  : "text-gray-800"
+              }`}
+            >
+              {value[0]}
+            </div>
+          );
+        },
       },
     },
     {
@@ -60,20 +133,39 @@ const DetailRequest = ({ data, isLoading }) => {
       options: {
         filter: false,
         sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <div className="subpixel-antialiased text-base font-medium text-gray-500">
+              ${value}
+            </div>
+          );
+        },
       },
     },
     {
-      name: "Tags",
+      name: "",
 
-      label: "Tags",
+      label: "",
       // type: "string",
       width: 200,
       options: {
         display: "false",
-
         filterOptions: {
           names: filter,
-          display: false,
+          display: true,
+          logic(value, filters) {
+            // alert(value);
+            const arr = value.split(",");
+            const data = arr.filter((val) => val.includes(filters));
+            if (data.length >= 1) {
+              return false;
+            } else {
+              return data;
+            }
+          },
+        },
+        customBodyRender: (val) => {
+          return <div className="text-red-400">{val}</div>;
         },
       },
     },
@@ -84,23 +176,22 @@ const DetailRequest = ({ data, isLoading }) => {
         sort: false,
         filter: false,
         searchable: false,
+        filter: false,
+        display: "false",
       },
     },
   ];
   const [cryptoAsset, setCryptoAsset] = useState([]);
 
   const options = {
-    // filterType: "dropdown",
+    filterType: "dropdown",
     customSearchRender: debounceSearchRender(500),
     responsive: "stacked",
     // onFilterChange: (index, value, arr) => {
-    //   setFilter([]);
+    //   const data = value.filter((n) => n);
+    //   setTag(data);
     // },
-    setRowProps: (row, dataIndex, rowIndex) => {
-      return {
-        style: { color: "blue" },
-      };
-    },
+
     print: false,
     selectableRows: false, // <===== will turn off checkboxes in rows
   };
@@ -118,27 +209,28 @@ const DetailRequest = ({ data, isLoading }) => {
             margin: "0 auto",
           }}
         >
-          <ThemeProvider theme={theme()}>
-            <MUIDataTable
-              title={"Binance Market Crypto"}
-              data={data?.map((val, i) => {
-                return [
-                  i + 1,
-                  val.Coin,
-                  val.LastPrice,
-                  val.hrChange,
-                  val.MarketCap,
-                  val.Tags,
-                  val.Action,
-                ];
-              })}
-              // columns={columns.map((val) => {
-              //   return val.headerName;
-              // })}
-              columns={columns}
-              options={options}
-            />
-          </ThemeProvider>
+          <MUIDataTable
+            title={
+              <>
+                <img src={Binance} width="150px" alt="" />
+              </>
+            }
+            data={data?.map((val, i) => {
+              return [
+                i + 1,
+                [val.Coin, val.CoinDetail],
+                [val.LastPrice, val.statLastPrice],
+                [val.hrChange, val.statPercent],
+                val.MarketCap,
+                val.Tags,
+              ];
+            })}
+            // columns={columns.map((val) => {
+            //   return val.headerName;
+            // })}
+            columns={columns}
+            options={options}
+          />
         </div>
       </section>
     </>

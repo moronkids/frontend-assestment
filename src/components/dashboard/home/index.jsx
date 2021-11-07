@@ -7,7 +7,7 @@ import useWebSocket from "react-use-websocket";
 import { Hooks } from "providers";
 function Home() {
   const [datas, setDatas] = useState([]);
-  const { Tag, searchInput } = useContext(Hooks);
+  const { Tag, setTag } = useContext(Hooks);
   const socketUrl = "wss://stream.binance.com:9443/ws/!ticker@arr";
   const { lastMessage } = useWebSocket(socketUrl);
 
@@ -44,6 +44,7 @@ function Home() {
         return {
           id: x.id,
           Coin: x.assetCode,
+          CoinDetail: x.assetName,
           Logo: x.logoUrl,
           Tag: x.tags,
           LastPrice: checkPoint
@@ -73,24 +74,7 @@ function Home() {
               : filtered[0].P > ticker?.priceChangePercent || 0
               ? "up"
               : "none"),
-          Tags: x.tags.join(),
-          Action: (
-            <>
-              <button
-                data-testid={"btn-details"}
-                type="button"
-                className="btn btn-success"
-                // onClick={() => {
-                //   setDetails(!details);
-                //   setId(i);
-                //   setIdTrx(val.id);
-                //   setRateCustomer(val.rating);
-                // }}
-              >
-                Trade
-              </button>
-            </>
-          ),
+          Tags: x.tags.join(",").toLowerCase(),
         };
       })
       .filter((z) => z.LastPrice !== "NaN")
@@ -104,19 +88,25 @@ function Home() {
         return 0;
       });
 
-    if (Tag === "empty") {
+    if (Tag === "empty" || Tag.length <= 0) {
       return datax;
     } else {
-      return datax?.filter((val) => val.Tag?.includes(Tag));
+      const filter = Tag?.filter(function (el) {
+        return el.length >= 1;
+      });
+
+      return datax?.filter((val) => val.Tag?.includes(filter?.[0]?.[0]));
     }
   }, [lastMessage, Tag]);
   let result;
   useEffect(() => {
     if (lastMessage) {
       result = callbackz();
+
+      // throw Error;
       setDatas(result);
     }
-  }, [result, lastMessage]);
+  }, [result, lastMessage, Tag]);
   return (
     //   <noRequest />
     <>

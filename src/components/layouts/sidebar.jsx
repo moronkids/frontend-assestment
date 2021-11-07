@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import IconBri from "assets/img/icons/Bri-Link.svg";
+import IconBri from "assets/img/pintu.webp";
 import IconHome from "assets/img/icons/Home.svg";
 import IconHomeWhite from "assets/img/icons/Home_w.svg";
 import IconTransaction from "assets/img/icons/Transaction.svg";
@@ -16,7 +16,7 @@ function Sidebar(props) {
   // eslint-disable-next-line no-undef
   const loc = useLocation();
   useEffect(() => {}, [localStorage.getItem("token")]);
-  // console.log(loc.pathname.split('/'))
+
   return (
     <div className="sidebar">
       {props.role === "customer" ? (
@@ -38,7 +38,14 @@ function Sidebar(props) {
                     "radius"
                   } d-flex justify-content-center align-items-center position-relative`}
                 >
-                  <img src={IconBri} alt="" srcset="" />
+                  <img
+                    src={IconBri}
+                    alt=""
+                    srcset=""
+                    width="70px"
+                    height="70px"
+                    className="rounded-xl shadow-xl"
+                  />
                 </div>
               </div>
             </Link>
@@ -74,22 +81,6 @@ function Sidebar(props) {
               </div>
             </Link>
           </div>
-          <Link to="/">
-            <div
-              className={`iconMenus ${
-                activeTab === "logout" && `active`
-              } d-flex justify-content-center align-items-center position-relative`}
-            >
-              <img
-                src={IconLogout}
-                alt=""
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  loc.href = "/login";
-                }}
-              />
-            </div>
-          </Link>
         </div>
       ) : (
         <div className="sidebar__wrap-vertical">
@@ -161,22 +152,6 @@ function Sidebar(props) {
               </div>
             </Link>
           </div>
-          <Link to="/login">
-            <div
-              className={`bro iconMenus ${
-                activeTab === "logout" && `active`
-              } d-flex c justify-content-center align-items-center position-relative`}
-            >
-              <img
-                src={IconLogout}
-                alt=""
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  loc.href = "/login";
-                }}
-              />
-            </div>
-          </Link>
         </div>
       )}
     </div>

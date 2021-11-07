@@ -11,18 +11,6 @@ function SidebarMobile(props) {
           <Link to="/home" onClick={(e) => setToggle(!toggle)}>
             <li>Home</li>
           </Link>
-          {localStorage.getItem("token") === "customer" ? (
-            <Link to="/profile" onClick={(e) => setToggle(!toggle)}>
-              <li>Profile</li>
-            </Link>
-          ) : (
-            <Link to="/transaction" onClick={(e) => setToggle(!toggle)}>
-              <li>Transaction</li>
-            </Link>
-          )}
-          <Link to="/login" onClick={(e) => localStorage.removeItem("token")}>
-            Logout
-          </Link>
         </ul>
       </div>
       <div
