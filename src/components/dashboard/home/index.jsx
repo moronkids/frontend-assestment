@@ -87,16 +87,7 @@ function Home() {
         }
         return 0;
       });
-
-    if (Tag === "empty" || Tag.length <= 0) {
-      return datax;
-    } else {
-      const filter = Tag?.filter(function (el) {
-        return el.length >= 1;
-      });
-
-      return datax?.filter((val) => val.Tag?.includes(filter?.[0]?.[0]));
-    }
+    return datax;
   }, [lastMessage, Tag]);
   let result;
   useEffect(() => {
