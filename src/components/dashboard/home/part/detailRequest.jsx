@@ -96,26 +96,6 @@ const DetailRequest = ({ data, isLoading }) => {
     print: false,
     selectableRows: false, // <===== will turn off checkboxes in rows
   };
-  const datas = [
-    {
-      id: 1,
-      Coin: "sdsd",
-      LastPrice: "ssdsd",
-      hrChange: "sdsd",
-      MarketCap: "sdsd",
-      Tags: "bokin",
-      Action: "tes",
-    },
-    {
-      id: 2,
-      Coin: "sdsd",
-      LastPrice: "ssdsd",
-      hrChange: "sdsd",
-      MarketCap: "sdsd",
-      Tags: "loker",
-      Action: "tes",
-    },
-  ];
 
   return (
     <>
